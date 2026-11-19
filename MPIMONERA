@@ -1,1 +1,3218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jelajah Dunia Monera - Biologi Kelas X | SMAN 2 Tanjung Raja</title>
+  <style>
+    /* ==========================================================================
+       VARIABEL WARNA, TIPOGRAFI, DAN RESET DASAR (100% OFFLINE CSS3)
+       ========================================================================== */
+    :root {
+      --primary: #0f766e;       /* Hijau Toska Sains */
+      --primary-dark: #115e59;
+      --primary-light: #ccfbf1;
+      --secondary: #0369a1;     /* Biru Ilmiah */
+      --secondary-dark: #075985;
+      --secondary-light: #e0f2fe;
+      --accent: #d97706;        /* Kuning Emas Aksen */
+      --accent-light: #fef3c7;
+      --success: #15803d;
+      --success-light: #dcfce7;
+      --danger: #b91c1c;
+      --danger-light: #fee2e2;
+      --bg-body: #f0f9ff;
+      --bg-card: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-color: #cbd5e1;
+      --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 8px 20px rgba(15, 23, 42, 0.08);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 50%, #f8fafc 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================================
+       HEADER & PROGRESS BAR GLOBAL
+       ========================================================================== */
+    header.app-header {
+      background: linear-gradient(90deg, var(--primary-dark), var(--secondary-dark));
+      color: #ffffff;
+      padding: 12px 20px;
+      box-shadow: var(--shadow-md);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-top {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .brand-title h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .brand-title p {
+      font-size: 0.8rem;
+      color: #bae6fd;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .student-badge {
+      background: rgba(255, 255, 255, 0.16);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-icon {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-icon:hover {
+      background: rgba(255, 255, 255, 0.28);
+      transform: translateY(-1px);
+    }
+
+    .progress-wrapper {
+      max-width: 1280px;
+      margin: 10px auto 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+    }
+
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #34d399, #fbbf24);
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    /* ==========================================================================
+       LAYOUT UTAMA (SIDEBAR + KONTEN)
+       ========================================================================== */
+    .app-container {
+      max-width: 1280px;
+      width: 100%;
+      margin: 20px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 20px;
+      flex: 1;
+    }
+
+    @media (max-width: 960px) {
+      .app-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Sidebar Navigasi */
+    aside.sidebar {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      height: fit-content;
+      position: sticky;
+      top: 96px;
+    }
+
+    @media (max-width: 960px) {
+      aside.sidebar {
+        position: static;
+      }
+    }
+
+    .sidebar-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      border: 1px solid transparent;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      background: var(--secondary-light);
+      color: var(--secondary-dark);
+    }
+
+    .nav-btn.active {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-syntax {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      opacity: 0.85;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #cbd5e1;
+      flex-shrink: 0;
+    }
+
+    .status-dot.done {
+      background: #22c55e;
+      box-shadow: 0 0 0 3px #dcfce7;
+    }
+
+    .nav-btn.active .status-dot.done {
+      background: #fde047;
+      box-shadow: 0 0 0 3px rgba(253, 224, 71, 0.3);
+    }
+
+    /* Area Konten Utama */
+    main.content-area {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 600px) {
+      main.content-area {
+        padding: 16px;
+      }
+    }
+
+    .module-section {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .module-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       KOMPONEN UI UMUM (BADGE, CARD, BUTTON, ALERT BOX)
+       ========================================================================== */
+    .discovery-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent-light);
+      color: #92400e;
+      border: 1px solid #fcd34d;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .module-header {
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid #f1f5f9;
+    }
+
+    .module-header h2 {
+      font-size: 1.55rem;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+    }
+
+    .module-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .card {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .card-white {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: #ffffff;
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: var(--secondary-dark);
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-accent:hover:not(:disabled) {
+      background: #b45309;
+    }
+
+    .btn-outline {
+      background: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+    }
+
+    .btn-outline:hover:not(:disabled) {
+      background: #f1f5f9;
+    }
+
+    .feedback-box {
+      padding: 14px 16px;
+      border-radius: var(--radius-sm);
+      margin-top: 12px;
+      font-size: 0.92rem;
+      display: none;
+    }
+
+    .feedback-box.show {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .feedback-success {
+      background: var(--success-light);
+      color: #14532d;
+      border: 1px solid #86efac;
+    }
+
+    .feedback-error {
+      background: var(--danger-light);
+      color: #7f1d1d;
+      border: 1px solid #fca5a5;
+    }
+
+    .feedback-info {
+      background: var(--secondary-light);
+      color: #0c4a6e;
+      border: 1px solid #7dd3fc;
+    }
+
+    /* Footer Navigasi Bawah Modul */
+    .module-footer-nav {
+      margin-top: 28px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ==========================================================================
+       HALAMAN BERANDA / PEMBUKA
+       ========================================================================== */
+    .hero-banner {
+      background: linear-gradient(135deg, #0f766e 0%, #0369a1 100%);
+      color: #ffffff;
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-banner h1 {
+      font-size: 2rem;
+      line-height: 1.2;
+      margin: 10px 0;
+    }
+
+    .school-pill {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .name-input-box {
+      background: rgba(255, 255, 255, 0.95);
+      color: var(--text-main);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      margin-top: 16px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .input-field {
+      flex: 1;
+      min-width: 200px;
+      padding: 10px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-family: inherit;
+    }
+
+    .input-field:focus {
+      outline: 2px solid var(--primary);
+      border-color: transparent;
+    }
+
+    .journey-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .journey-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .journey-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+
+    /* ==========================================================================
+       MODUL 1: PETA KONSEP INTERAKTIF
+       ========================================================================== */
+    .concept-map-container {
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      overflow-x: auto;
+    }
+
+    .concept-node {
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .concept-node:hover {
+      filter: brightness(1.06);
+    }
+
+    .concept-node.selected rect, .concept-node.selected ellipse {
+      stroke: #f59e0b;
+      stroke-width: 3.5px;
+    }
+
+    /* ==========================================================================
+       MODUL 2: STRUKTUR SEL BAKTERI (SVG INTERAKTIF + ANIMASI FLAGELA)
+       ========================================================================== */
+    @keyframes waveFlagella {
+      0% { transform: skewY(0deg) scaleX(1); }
+      25% { transform: skewY(4deg) scaleX(0.97); }
+      50% { transform: skewY(0deg) scaleX(1.02); }
+      75% { transform: skewY(-4deg) scaleX(0.97); }
+      100% { transform: skewY(0deg) scaleX(1); }
+    }
+
+    .flagella-anim {
+      transform-origin: 540px 180px;
+      animation: waveFlagella 1.8s infinite ease-in-out;
+    }
+
+    .cell-hotspot {
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .cell-hotspot:hover {
+      opacity: 0.85;
+    }
+
+    .organelle-chip {
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: #ffffff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .organelle-chip.explored {
+      background: var(--success-light);
+      border-color: #4ade80;
+      color: #14532d;
+    }
+
+    .organelle-chip.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary-dark);
+    }
+
+    /* ==========================================================================
+       MODUL 3: BENTUK & SUSUNAN BAKTERI + GAME MENCOCOKKAN
+       ========================================================================== */
+    .shape-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .shape-card {
+      background: #ffffff;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .shape-card:hover {
+      border-color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    .shape-card.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    /* ==========================================================================
+       MODUL 4: SIMULASI REPRODUKSI & TRANSFER GEN HORIZONTAL
+       ========================================================================== */
+    .sim-stage-box {
+      background: #0f172a;
+      color: #f8fafc;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: #f1f5f9;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      background: var(--secondary);
+      color: #ffffff;
+      border-color: var(--secondary-dark);
+    }
+
+    .formula-box {
+      background: var(--secondary-light);
+      border: 1px solid #7dd3fc;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      color: var(--secondary-dark);
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    /* ==========================================================================
+       MODUL 5: DRAG & DROP KLASIFIKASI (TOUCH + MOUSE FRIENDLY)
+       ========================================================================== */
+    .dnd-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      min-height: 90px;
+      padding: 14px;
+      background: #f1f5f9;
+      border: 2px dashed #94a3b8;
+      border-radius: var(--radius-md);
+      margin-bottom: 16px;
+    }
+
+    .dnd-card {
+      background: #ffffff;
+      border: 2px solid var(--secondary);
+      border-radius: var(--radius-sm);
+      padding: 10px 12px;
+      font-size: 0.85rem;
+      cursor: grab;
+      user-select: none;
+      touch-action: manipulation;
+      box-shadow: var(--shadow-sm);
+      max-width: 260px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .dnd-card:active {
+      cursor: grabbing;
+    }
+
+    .dnd-card.selected-touch {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      transform: scale(1.03);
+    }
+
+    .dnd-card.correct {
+      border-color: var(--success);
+      background: var(--success-light);
+    }
+
+    .dnd-card.wrong {
+      border-color: var(--danger);
+      background: var(--danger-light);
+    }
+
+    .dropzone {
+      min-height: 220px;
+      border: 2px dashed var(--primary);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      background: #f0fdf4;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: background 0.2s;
+    }
+
+    .dropzone.eubacteria-zone {
+      border-color: var(--secondary);
+      background: #f0f9ff;
+    }
+
+    .dropzone.drag-over {
+      background: #fef9c3;
+      border-style: solid;
+    }
+
+    /* ==========================================================================
+       MODUL 6: KUIS INTERAKTIF
+       ========================================================================== */
+    .quiz-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 12px 16px;
+      margin-bottom: 10px;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .quiz-option:hover {
+      border-color: var(--secondary);
+      background: var(--secondary-light);
+    }
+
+    .quiz-option.selected {
+      border-color: var(--primary);
+      background: var(--primary-light);
+      font-weight: 600;
+    }
+
+    .match-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 10px;
+      background: #f8fafc;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      margin-bottom: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .match-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ==========================================================================
+       MODAL (PETUNJUK, GLOSARIUM, REFERENSI)
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 999;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      max-width: 680px;
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 16px;
+    }
+
+    .glossary-item {
+      padding: 10px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .glossary-item strong {
+      color: var(--primary-dark);
+    }
+
+    footer.app-footer {
+      text-align: center;
+      padding: 16px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      background: #ffffff;
+      border-top: 1px solid var(--border-color);
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       HEADER APLIKASI & PROGRESS BAR
+       ======================================================================== -->
+  <header class="app-header">
+    <div class="header-top">
+      <div class="brand-box">
+        <div class="brand-logo" aria-hidden="true">
+          <!-- Ikon Bakteri SVG Inline -->
+          <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+            <rect x="14" y="20" width="36" height="24" rx="12" fill="#34d399" stroke="#ffffff" stroke-width="3"/>
+            <path d="M50 32C55 28 58 36 62 32" stroke="#fde047" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="25" cy="32" r="3" fill="#064e3b"/>
+            <path d="M32 28C35 26 38 38 41 32" stroke="#064e3b" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="brand-title">
+          <h1>Jelajah Dunia Monera</h1>
+          <p>Biologi Kelas X SMA &bull; SMAN 2 Tanjung Raja</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <span class="student-badge" id="headerStudentName">Peserta Didik: Tamu</span>
+        <button class="btn-icon" onclick="navigateTo('home')">Beranda</button>
+        <button class="btn-icon" onclick="openModal('modalGuide')">Petunjuk</button>
+        <button class="btn-icon" onclick="openModal('modalGlossary')">Glosarium</button>
+        <button class="btn-icon" onclick="openModal('modalRef')">Referensi</button>
+      </div>
+    </div>
+
+    <div class="progress-wrapper">
+      <span>Progres Belajar:</span>
+      <div class="progress-track">
+        <div class="progress-fill" id="globalProgressFill"></div>
+      </div>
+      <span id="globalProgressText">0% (0/8 Bagian)</span>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       KONTAINER UTAMA (SIDEBAR + KONTEN MODUL)
+       ======================================================================== -->
+  <div class="app-container">
+    <!-- SIDEBAR NAVIGASI -->
+    <aside class="sidebar" aria-label="Navigasi Modul Pembelajaran">
+      <div class="sidebar-title">Peta Perjalanan Belajar</div>
+      <ul class="nav-list" id="sidebarNavList">
+        <li>
+          <button class="nav-btn active" data-target="home" onclick="navigateTo('home')">
+            <div>
+              Beranda &amp; Tujuan
+              <span class="nav-syntax">Orientasi Belajar</span>
+            </div>
+            <span class="status-dot done" id="dot-home"></span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" data-target="mod1" onclick="navigateTo('mod1')">
+            <div>
+              1. Peta Konsep Monera
+              <span class="nav-syntax">Stimulation &amp; Problem Statement</span>
+            </div>
+            <span class="status-dot" id="dot-mod1"></span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" data-target="mod2" onclick="navigateTo('mod2')">
+            <div>
+              2. Struktur Sel Bakteri
+              <span class="nav-syntax">Data Collection (Eksplorasi Sel)</span>
+            </div>
+            <span class="status-dot" id="dot-mod2"></span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" data-target="mod3" onclick="navigateTo('mod3')">
+            <div>
+              3. Bentuk &amp; Susunan
+              <span class="nav-syntax">Data Collection (Morfologi)</span>
+            </div>
+            <span class="status-dot" id="dot-mod3"></span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" data-target="mod4" onclick="navigateTo('mod4')">
+            <div>
+              4. Simulasi Reproduksi
+              <span class="nav-syntax">Data Processing (Simulasi)</span>
+            </div>
+            <span class="status-dot" id="dot-mod4"></span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" data-target="mod5" onclick="navigateTo('mod5')">
+            <div>
+              5. Klasifikasi Monera
+              <span class="nav-syntax">Verification (Drag &amp; Drop)</span>
+            </div>
+            <span class="status-dot" id="dot-mod5"></span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" data-target="modPeran" onclick="navigateTo('modPeran')">
+            <div>
+              6. Peranan &amp; Studi Kasus
+              <span class="nav-syntax">Analisis Kehidupan Nyata</span>
+            </div>
+            <span class="status-dot" id="dot-modPeran"></span>
+          </button>
+        </li>
+        <li>
+          <button class="nav-btn" data-target="mod6" onclick="navigateTo('mod6')">
+            <div>
+              7. Kuis &amp; Kesimpulan
+              <span class="nav-syntax">Generalization (Evaluasi)</span>
+            </div>
+            <span class="status-dot" id="dot-mod6"></span>
+          </button>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- AREA KONTEN -->
+    <main class="content-area">
+
+      <!-- ====================================================================
+           HALAMAN 0: BERANDA / PEMBUKA
+           ==================================================================== -->
+      <section id="sec-home" class="module-section active">
+        <div class="hero-banner">
+          <div class="hero-grid">
+            <div>
+              <span class="school-pill">SMAN 2 TANJUNG RAJA &bull; BIOLOGI KELAS X</span>
+              <h1>Jelajah Dunia Monera</h1>
+              <p>Media Pembelajaran Interaktif Berbasis <strong>Discovery Learning</strong> untuk menyelami kehidupan mikroskopis organisme prokariotik.</p>
+
+              <div class="name-input-box">
+                <label for="studentNameInput" style="font-weight:700; font-size:0.9rem;">Masukkan Nama Lengkap &amp; Kelas Peserta Didik:</label>
+                <div class="input-row">
+                  <input type="text" id="studentNameInput" class="input-field" placeholder="Contoh: Rina Amelia - X.1" />
+                  <button class="btn btn-primary" onclick="saveStudentName()">Simpan &amp; Mulai</button>
+                </div>
+                <div id="nameSaveFeedback" style="font-size:0.82rem; color:var(--success); margin-top:6px; font-weight:600;"></div>
+              </div>
+            </div>
+
+            <div style="text-align:center;">
+              <!-- Ilustrasi Hero SVG -->
+              <svg width="240" height="190" viewBox="0 0 260 200" fill="none" aria-label="Ilustrasi Bakteri Mikroskopis">
+                <circle cx="130" cy="100" r="88" fill="rgba(255,255,255,0.12)" stroke="#bae6fd" stroke-width="2" stroke-dasharray="6 4"/>
+                <rect x="65" y="72" width="110" height="56" rx="28" fill="#10b981" stroke="#ffffff" stroke-width="4"/>
+                <rect x="73" y="80" width="94" height="40" rx="20" fill="#059669" stroke="#a7f3d0" stroke-width="2"/>
+                <!-- Nukleoid -->
+                <path d="M92 100C96 88 106 112 112 96C118 82 126 114 134 98C140 88 146 108 150 100" stroke="#fef08a" stroke-width="3.5" stroke-linecap="round"/>
+                <!-- Ribosom -->
+                <circle cx="88" cy="92" r="2.5" fill="#ffffff"/>
+                <circle cx="104" cy="110" r="2.5" fill="#ffffff"/>
+                <circle cx="144" cy="90" r="2.5" fill="#ffffff"/>
+                <circle cx="155" cy="108" r="2.5" fill="#ffffff"/>
+                <!-- Flagela -->
+                <path d="M175 100C192 84 205 116 222 98C232 88 242 104 250 96" stroke="#fde047" stroke-width="4" stroke-linecap="round"/>
+                <!-- Pili -->
+                <line x1="90" y1="72" x2="84" y2="58" stroke="#e0f2fe" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="120" y1="72" x2="120" y2="56" stroke="#e0f2fe" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="150" y1="72" x2="156" y2="58" stroke="#e0f2fe" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="95" y1="128" x2="90" y2="142" stroke="#e0f2fe" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="145" y1="128" x2="150" y2="142" stroke="#e0f2fe" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="color:var(--primary-dark); margin-bottom:8px;">Capaian Pembelajaran</h3>
+            <ul style="padding-left:20px; font-size:0.92rem; color:var(--text-main);">
+              <li style="margin-bottom:6px;">Menganalisis ciri-ciri Monera sebagai organisme prokariotik serta mengklasifikasikannya ke dalam <em>Archaebacteria</em> dan <em>Eubacteria</em> berdasarkan struktur sel dan habitatnya.</li>
+              <li style="margin-bottom:6px;">Menjelaskan struktur sel, variasi bentuk, dan cara reproduksi bakteri (pembelahan biner) serta transfer gen horizontal (transformasi, transduksi, konjugasi).</li>
+              <li>Mengevaluasi peran Monera yang menguntungkan dan merugikan bagi kehidupan serta mengusulkan upaya pemanfaatan dan pencegahannya.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3 style="color:var(--secondary-dark); margin-bottom:8px;">Sintaks Discovery Learning</h3>
+            <ol style="padding-left:20px; font-size:0.9rem; color:var(--text-main);">
+              <li><strong>Stimulation:</strong> Mengamati fenomena ekstremofilik &amp; peta konsep Monera.</li>
+              <li><strong>Problem Statement:</strong> Merumuskan pertanyaan ilmiah terkait karakteristik bakteri.</li>
+              <li><strong>Data Collection:</strong> Mengeksplorasi organel sel &amp; morfologi bentuk bakteri.</li>
+              <li><strong>Data Processing:</strong> Mengolah data simulasi pembelahan biner &amp; rekombinasi genetik.</li>
+              <li><strong>Verification:</strong> Membuktikan klasifikasi <em>Archaebacteria</em> vs <em>Eubacteria</em>.</li>
+              <li><strong>Generalization:</strong> Menyimpulkan konsep dan menyelesaikan evaluasi akhir.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="card-white" style="margin-top:8px;">
+          <h3 style="color:var(--primary-dark); margin-bottom:6px;">Peta Perjalanan Belajar (Klik untuk Langsung Menuju Modul)</h3>
+          <div class="journey-steps">
+            <div class="journey-card" onclick="navigateTo('mod1')">
+              <strong style="color:var(--primary);">Modul 1</strong>
+              <div style="font-size:0.88rem; font-weight:600;">Peta Konsep Monera</div>
+              <small style="color:var(--text-muted);">Stimulation &amp; Masalah</small>
+            </div>
+            <div class="journey-card" onclick="navigateTo('mod2')">
+              <strong style="color:var(--primary);">Modul 2</strong>
+              <div style="font-size:0.88rem; font-weight:600;">Struktur Sel Bakteri</div>
+              <small style="color:var(--text-muted);">9 Bagian Sel Interaktif</small>
+            </div>
+            <div class="journey-card" onclick="navigateTo('mod3')">
+              <strong style="color:var(--primary);">Modul 3</strong>
+              <div style="font-size:0.88rem; font-weight:600;">Bentuk &amp; Susunan</div>
+              <small style="color:var(--text-muted);">Galeri &amp; Uji Cocok</small>
+            </div>
+            <div class="journey-card" onclick="navigateTo('mod4')">
+              <strong style="color:var(--primary);">Modul 4</strong>
+              <div style="font-size:0.88rem; font-weight:600;">Simulasi Reproduksi</div>
+              <small style="color:var(--text-muted);">Biner &amp; Transfer Gen</small>
+            </div>
+            <div class="journey-card" onclick="navigateTo('mod5')">
+              <strong style="color:var(--primary);">Modul 5</strong>
+              <div style="font-size:0.88rem; font-weight:600;">Klasifikasi Monera</div>
+              <small style="color:var(--text-muted);">Permainan Drag &amp; Drop</small>
+            </div>
+            <div class="journey-card" onclick="navigateTo('modPeran')">
+              <strong style="color:var(--primary);">Modul 6</strong>
+              <div style="font-size:0.88rem; font-weight:600;">Peranan &amp; Kasus</div>
+              <small style="color:var(--text-muted);">Manfaat &amp; Patogen</small>
+            </div>
+            <div class="journey-card" onclick="navigateTo('mod6')">
+              <strong style="color:var(--primary);">Modul 7</strong>
+              <div style="font-size:0.88rem; font-weight:600;">Kuis &amp; Kesimpulan</div>
+              <small style="color:var(--text-muted);">20 Soal Evaluasi</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-footer-nav">
+          <button class="btn btn-outline" onclick="openModal('modalGuide')">Baca Petunjuk Penggunaan</button>
+          <button class="btn btn-primary" onclick="navigateTo('mod1')">Mulai Modul 1: Peta Konsep &rarr;</button>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODUL 1: PETA KONSEP MONERA (STIMULATION & PROBLEM STATEMENT)
+           ==================================================================== -->
+      <section id="sec-mod1" class="module-section">
+        <div class="module-header">
+          <span class="discovery-badge">Tahap 1 &amp; 2 Discovery Learning: Stimulation &amp; Problem Statement</span>
+          <h2>Modul 1. Peta Konsep Interaktif Monera</h2>
+          <p>Klik setiap simpul pada peta konsep di bawah ini untuk menemukan karakteristik utama Kingdom Monera secara mandiri.</p>
+        </div>
+
+        <!-- Pertanyaan Pemantik (Stimulation) -->
+        <div class="card" style="background:linear-gradient(90deg, #fef3c7, #fffbeb); border-color:#fcd34d;">
+          <h3 style="color:#92400e; margin-bottom:6px;">Pertanyaan Pemantik (Stimulation)</h3>
+          <p style="font-size:0.95rem; margin-bottom:10px;">
+            <em>"Tahukah kamu bahwa di kawah gunung berapi bersuhu lebih dari 90&deg;C, di danau dengan kadar garam sangat pekat, hingga di dalam usus manusia ditemukan makhluk hidup mikroskopis? <strong>Mengapa bakteri dapat hidup di lingkungan yang sangat ekstrem tersebut, sedangkan manusia tidak mampu bertahan?</strong>"</em>
+          </p>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <input type="text" id="hipotesisMod1" class="input-field" placeholder="Tuliskan dugaan sementara (hipotesis) kamu di sini..." />
+            <button class="btn btn-accent" onclick="submitHipotesisMod1()">Kirim Hipotesis</button>
+          </div>
+          <div id="feedbackHipotesisMod1" class="feedback-box"></div>
+        </div>
+
+        <!-- Peta Konsep SVG Interaktif -->
+        <div class="grid-2" style="grid-template-columns: 1.45fr 1fr; align-items:start;">
+          <div class="concept-map-container">
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px; font-weight:600;">
+              Klik kotak konsep di bawah ini (<span id="mod1ClickedCount">0</span>/8 konsep telah dieksplorasi):
+            </p>
+            <svg viewBox="0 0 640 430" width="100%" style="min-width:520px; display:block;">
+              <!-- Garis Penghubung Antarkonsep -->
+              <line x1="320" y1="60" x2="140" y2="140" stroke="#64748b" stroke-width="2.5"/>
+              <line x1="320" y1="60" x2="320" y2="140" stroke="#64748b" stroke-width="2.5"/>
+              <line x1="320" y1="60" x2="500" y2="140" stroke="#64748b" stroke-width="2.5"/>
+
+              <line x1="140" y1="185" x2="85" y2="265" stroke="#0f766e" stroke-width="2"/>
+              <line x1="140" y1="185" x2="215" y2="265" stroke="#0f766e" stroke-width="2"/>
+
+              <line x1="320" y1="185" x2="320" y2="265" stroke="#0369a1" stroke-width="2"/>
+
+              <line x1="500" y1="185" x2="435" y2="265" stroke="#d97706" stroke-width="2"/>
+              <line x1="500" y1="185" x2="565" y2="265" stroke="#d97706" stroke-width="2"/>
+
+              <!-- Label Relasi -->
+              <rect x="195" y="88" width="66" height="18" rx="4" fill="#ffffff"/>
+              <text x="228" y="100" font-size="10" text-anchor="middle" fill="#475569" font-weight="bold">berciri</text>
+
+              <rect x="292" y="92" width="56" height="18" rx="4" fill="#ffffff"/>
+              <text x="320" y="104" font-size="10" text-anchor="middle" fill="#475569" font-weight="bold">meliputi</text>
+
+              <rect x="385" y="88" width="74" height="18" rx="4" fill="#ffffff"/>
+              <text x="422" y="100" font-size="10" text-anchor="middle" fill="#475569" font-weight="bold">terbagi atas</text>
+
+              <!-- Simpul Utama: MONERA -->
+              <g class="concept-node selected" id="node-pengertian" onclick="selectConcept('pengertian')">
+                <rect x="230" y="20" width="180" height="44" rx="12" fill="#0f766e"/>
+                <text x="320" y="47" font-size="15" font-weight="bold" fill="#ffffff" text-anchor="middle">KINGDOM MONERA</text>
+              </g>
+
+              <!-- Cabang 1: Prokariotik -->
+              <g class="concept-node" id="node-prokariotik" onclick="selectConcept('prokariotik')">
+                <rect x="55" y="140" width="170" height="44" rx="10" fill="#0d9488"/>
+                <text x="140" y="160" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Organisme Prokariotik</text>
+                <text x="140" y="175" font-size="10" fill="#ccfbf1" text-anchor="middle">(Tanpa Membran Inti)</text>
+              </g>
+
+              <!-- Sub-cabang 1A: Nukleoid & Ribosom -->
+              <g class="concept-node" id="node-nukleoid" onclick="selectConcept('nukleoid')">
+                <rect x="15" y="265" width="135" height="50" rx="10" fill="#14b8a6"/>
+                <text x="82" y="287" font-size="11.5" font-weight="bold" fill="#ffffff" text-anchor="middle">Nukleoid &amp; Ribosom</text>
+                <text x="82" y="302" font-size="9.5" fill="#f0fdfa" text-anchor="middle">DNA Sirkuler &amp; Sintesis</text>
+              </g>
+
+              <!-- Sub-cabang 1B: Uniseluler & Biner -->
+              <g class="concept-node" id="node-uniseluler" onclick="selectConcept('uniseluler')">
+                <rect x="160" y="265" width="125" height="50" rx="10" fill="#14b8a6"/>
+                <text x="222" y="287" font-size="11.5" font-weight="bold" fill="#ffffff" text-anchor="middle">Uniseluler &amp; Biner</text>
+                <text x="222" y="302" font-size="9.5" fill="#f0fdfa" text-anchor="middle">Bersel Satu &amp; Membelah</text>
+              </g>
+
+              <!-- Cabang 2: Keanekaragaman -->
+              <g class="concept-node" id="node-habitat" onclick="selectConcept('habitat')">
+                <rect x="245" y="140" width="150" height="44" rx="10" fill="#0369a1"/>
+                <text x="320" y="160" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Bentuk &amp; Habitat</text>
+                <text x="320" y="175" font-size="10" fill="#e0f2fe" text-anchor="middle">(Kosmopolit &amp; Ekstrem)</text>
+              </g>
+
+              <!-- Sub-cabang 2A: Bentuk Dasar -->
+              <g class="concept-node" id="node-bentuk" onclick="selectConcept('bentuk')">
+                <rect x="295" y="265" width="120" height="50" rx="10" fill="#0284c7"/>
+                <text x="355" y="287" font-size="11.5" font-weight="bold" fill="#ffffff" text-anchor="middle">Variasi Bentuk</text>
+                <text x="355" y="302" font-size="9.5" fill="#e0f2fe" text-anchor="middle">Kokus, Basil, Spiral</text>
+              </g>
+
+              <!-- Cabang 3: Klasifikasi -->
+              <g class="concept-node" id="node-klasifikasi" onclick="selectConcept('klasifikasi')">
+                <rect x="415" y="140" width="170" height="44" rx="10" fill="#b45309"/>
+                <text x="500" y="160" font-size="12" font-weight="bold" fill="#ffffff" text-anchor="middle">Dua Kelompok Utama</text>
+                <text x="500" y="175" font-size="10" fill="#fef3c7" text-anchor="middle">(Klasifikasi Monera)</text>
+              </g>
+
+              <!-- Sub-cabang 3A: Archaebacteria -->
+              <g class="concept-node" id="node-archaea" onclick="selectConcept('archaea')">
+                <rect x="425" y="265" width="110" height="50" rx="10" fill="#d97706"/>
+                <text x="480" y="287" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Archaebacteria</text>
+                <text x="480" y="302" font-size="9.5" fill="#fef3c7" text-anchor="middle">Bakteri Purba/Ekstrem</text>
+              </g>
+
+              <!-- Sub-cabang 3B: Eubacteria -->
+              <g class="concept-node" id="node-eubacteria" onclick="selectConcept('eubacteria')">
+                <rect x="542" y="265" width="90" height="50" rx="10" fill="#d97706"/>
+                <text x="587" y="287" font-size="11" font-weight="bold" fill="#ffffff" text-anchor="middle">Eubacteria</text>
+                <text x="587" y="302" font-size="9.5" fill="#fef3c7" text-anchor="middle">Bakteri Sejati</text>
+              </g>
+
+              <!-- Catatan Bawah SVG -->
+              <rect x="20" y="345" width="600" height="65" rx="10" fill="#e0f2fe" stroke="#7dd3fc"/>
+              <text x="320" y="368" font-size="11.5" font-weight="bold" fill="#075985" text-anchor="middle">Aktivitas Pengamatan Mandiri (Problem Statement)</text>
+              <text x="320" y="386" font-size="10.5" fill="#0c4a6e" text-anchor="middle">Bandingkan sel Monera dengan sel tumbuhan/hewan yang pernah kamu pelajari!</text>
+              <text x="320" y="401" font-size="10.5" fill="#0c4a6e" text-anchor="middle">Klik seluruh simpul di atas untuk membuka panel informasi ilmiah di sebelah kanan.</text>
+            </svg>
+          </div>
+
+          <!-- Panel Informasi Simpul Konsep -->
+          <div class="card-white" id="conceptDetailPanel">
+            <span class="discovery-badge" style="background:var(--primary-light); color:var(--primary-dark); border-color:#5eead4;">Panel Informasi Konsep</span>
+            <h3 id="conceptTitle" style="color:var(--primary-dark); margin-bottom:8px;">Pengertian Kingdom Monera</h3>
+            <p id="conceptDesc" style="font-size:0.93rem; color:var(--text-main); margin-bottom:12px;">
+              <strong>Monera</strong> berasal dari kata Yunani <em>moneres</em> yang berarti "tunggal". Kingdom Monera mencakup seluruh organisme bersel satu (uniseluler) yang bersifat <strong>prokariotik</strong>, yaitu tidak memiliki membran inti sel (karioteka) maupun organel bermembran rangkap.
+            </p>
+            <div id="conceptKeyPoints" style="background:#f8fafc; padding:12px; border-radius:8px; border-left:4px solid var(--primary); font-size:0.88rem;">
+              <strong>Ciri Kunci:</strong>
+              <ul style="padding-left:18px; margin-top:4px;">
+                <li>Ukuran mikroskopis (umumnya 0,5 &ndash; 5 &mu;m).</li>
+                <li>Materi genetik berupa DNA sirkuler berada di daerah <strong>nukleoid</strong>.</li>
+                <li>Memiliki ribosom tipe 70S untuk sintesis protein.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cek Pemahaman Problem Statement -->
+        <div class="card" style="margin-top:16px;">
+          <h4 style="color:var(--secondary-dark); margin-bottom:8px;">Identifikasi Masalah Mandiri (Problem Statement)</h4>
+          <p style="font-size:0.9rem; margin-bottom:10px;">Berdasarkan pengamatan peta konsep, manakah rumusan masalah ilmiah yang paling tepat untuk menyelidiki perbedaan sel Monera dengan sel eukariotik (seperti sel hewan/tumbuhan)?</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <label style="cursor:pointer; font-size:0.9rem;"><input type="radio" name="psMod1" value="A"> A. Mengapa bakteri memiliki mitokondria dan kloroplas yang berukuran sangat besar?</label>
+            <label style="cursor:pointer; font-size:0.9rem;"><input type="radio" name="psMod1" value="B"> B. Bagaimana cara sel prokariotik mengatur aktivitas genetik dan metabolisme tanpa adanya membran inti sel?</label>
+            <label style="cursor:pointer; font-size:0.9rem;"><input type="radio" name="psMod1" value="C"> C. Bagaimana cara bakteri membentuk jaringan otot dan saraf pada tubuh manusia?</label>
+          </div>
+          <button class="btn btn-primary" style="margin-top:10px;" onclick="checkProblemStatement()">Periksa Rumusan Masalah</button>
+          <div id="feedbackPsMod1" class="feedback-box"></div>
+        </div>
+
+        <div class="module-footer-nav">
+          <button class="btn btn-outline" onclick="navigateTo('home')">&larr; Kembali ke Beranda</button>
+          <button class="btn btn-primary" onclick="navigateTo('mod2')">Lanjut ke Modul 2: Struktur Sel &rarr;</button>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODUL 2: STRUKTUR SEL BAKTERI (DATA COLLECTION)
+           ==================================================================== -->
+      <section id="sec-mod2" class="module-section">
+        <div class="module-header">
+          <span class="discovery-badge">Tahap 3 Discovery Learning: Data Collection (Eksplorasi Struktur Sel)</span>
+          <h2>Modul 2. Anatomi &amp; Struktur Sel Bakteri</h2>
+          <p>Klik pada <strong>9 bagian sel bakteri</strong> (baik pada gambar maupun tombol daftar organel) untuk mengumpulkan data struktur dan fungsinya.</p>
+        </div>
+
+        <div class="card" style="background:#eff6ff; border-color:#93c5fd; font-size:0.9rem;">
+          <strong>Catatan Penting Biologi:</strong> Tidak semua jenis bakteri memiliki struktur tambahan seperti <strong>kapsul</strong>, <strong>flagela</strong>, dan <strong>plasmid</strong>. Struktur utama yang selalu dimiliki setiap sel bakteri adalah membran plasma, sitoplasma, ribosom, dan daerah nukleoid (DNA).
+        </div>
+
+        <!-- Daftar Chip Organel untuk Tracking Eksplorasi -->
+        <div style="margin-bottom:14px;">
+          <div style="font-size:0.85rem; font-weight:700; margin-bottom:8px; color:var(--primary-dark);">
+            Progres Eksplorasi Sel: <span id="cellExploredCount">0</span> / 9 Struktur Ditemukan
+          </div>
+          <div id="organelleChipsContainer" style="display:flex; flex-wrap:wrap; gap:8px;"></div>
+        </div>
+
+        <div class="grid-2" style="grid-template-columns: 1.45fr 1fr; align-items:start;">
+          <!-- Ilustrasi SVG Detail Sel Bakteri -->
+          <div class="card-white" style="padding:12px; overflow-x:auto;">
+            <svg viewBox="0 0 650 380" width="100%" style="min-width:500px; display:block;" aria-label="Diagram Struktur Sel Bakteri">
+              <defs>
+                <linearGradient id="capsuleGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#a7f3d0"/>
+                  <stop offset="100%" stop-color="#6ee7b7"/>
+                </linearGradient>
+                <linearGradient id="cytoGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#fef9c3"/>
+                  <stop offset="100%" stop-color="#fde68a"/>
+                </linearGradient>
+              </defs>
+
+              <!-- 8. FLAGELA (Dengan Animasi Gerak Sederhana) -->
+              <g class="flagella-anim cell-hotspot" onclick="inspectOrganelle('flagela')">
+                <path d="M510 185 C540 155, 565 215, 595 180 C615 158, 630 198, 645 178" stroke="#d97706" stroke-width="6" fill="none" stroke-linecap="round"/>
+                <path d="M510 200 C538 175, 562 228, 590 198" stroke="#f59e0b" stroke-width="4" fill="none" stroke-linecap="round"/>
+              </g>
+
+              <!-- 9. PILI / FIMBRIAE -->
+              <g class="cell-hotspot" onclick="inspectOrganelle('pili')">
+                <line x1="160" y1="108" x2="145" y2="75" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                <line x1="210" y1="105" x2="205" y2="70" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                <line x1="270" y1="105" x2="270" y2="68" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                <line x1="330" y1="105" x2="335" y2="70" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                <line x1="390" y1="108" x2="405" y2="75" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                <line x1="450" y1="115" x2="472" y2="85" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                <!-- Bawah -->
+                <line x1="170" y1="272" x2="155" y2="305" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                <line x1="230" y1="275" x2="225" y2="310" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                <line x1="300" y1="275" x2="300" y2="312" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                <line x1="370" y1="275" x2="375" y2="310" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+                <line x1="435" y1="270" x2="452" y2="302" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+              </g>
+
+              <!-- 1. KAPSUL (Lapisan Terluar) -->
+              <rect class="cell-hotspot" onclick="inspectOrganelle('kapsul')" x="95" y="105" width="420" height="170" rx="85" fill="url(#capsuleGrad)" stroke="#059669" stroke-width="3"/>
+
+              <!-- 2. DINDING SEL (Peptidoglikan) -->
+              <rect class="cell-hotspot" onclick="inspectOrganelle('dinding')" x="110" y="118" width="390" height="144" rx="72" fill="#34d399" stroke="#065f46" stroke-width="3"/>
+
+              <!-- 3. MEMBRAN PLASMA -->
+              <rect class="cell-hotspot" onclick="inspectOrganelle('membran')" x="122" y="130" width="366" height="120" rx="60" fill="#fbbf24" stroke="#b45309" stroke-width="2.5"/>
+
+              <!-- 4. SITOPLASMA -->
+              <rect class="cell-hotspot" onclick="inspectOrganelle('sitoplasma')" x="130" y="138" width="350" height="104" rx="52" fill="url(#cytoGrad)"/>
+
+              <!-- 5. NUKLEOID (DNA Kromosomal Sirkuler Kusut) -->
+              <g class="cell-hotspot" onclick="inspectOrganelle('nukleoid')">
+                <ellipse cx="295" cy="190" rx="72" ry="34" fill="rgba(239, 68, 68, 0.12)"/>
+                <path d="M238 190 C245 162, 265 218, 275 175 C285 155, 295 222, 310 172 C322 158, 335 215, 350 185 C358 172, 342 208, 325 195 C305 180, 275 210, 252 192 Z" stroke="#dc2626" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+              </g>
+
+              <!-- 6. PLASMID (DNA Ekstrakromosomal Sirkuler Kecil) -->
+              <g class="cell-hotspot" onclick="inspectOrganelle('plasmid')">
+                <circle cx="415" cy="175" r="14" fill="none" stroke="#7c3aed" stroke-width="3.5"/>
+                <circle cx="415" cy="175" r="9" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-dasharray="3 2"/>
+              </g>
+
+              <!-- 7. RIBOSOM (Titik-titik Sintesis Protein) -->
+              <g class="cell-hotspot" onclick="inspectOrganelle('ribosom')">
+                <circle cx="175" cy="175" r="4.5" fill="#1e3a8a"/>
+                <circle cx="195" cy="205" r="4.5" fill="#1e3a8a"/>
+                <circle cx="215" cy="168" r="4.5" fill="#1e3a8a"/>
+                <circle cx="380" cy="212" r="4.5" fill="#1e3a8a"/>
+                <circle cx="445" cy="205" r="4.5" fill="#1e3a8a"/>
+                <circle cx="255" cy="222" r="4.5" fill="#1e3a8a"/>
+                <circle cx="345" cy="158" r="4.5" fill="#1e3a8a"/>
+              </g>
+
+              <!-- GARIS PENUNJUK & LABEL INTERAKTIF -->
+              <!-- Kapsul -->
+              <line x1="125" y1="122" x2="55" y2="55" stroke="#0f172a" stroke-width="1.5"/>
+              <g class="cell-hotspot" onclick="inspectOrganelle('kapsul')">
+                <rect x="8" y="34" width="84" height="24" rx="6" fill="#059669"/>
+                <text x="50" y="50" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">1. Kapsul</text>
+              </g>
+
+              <!-- Dinding Sel -->
+              <line x1="115" y1="155" x2="55" y2="125" stroke="#0f172a" stroke-width="1.5"/>
+              <g class="cell-hotspot" onclick="inspectOrganelle('dinding')">
+                <rect x="4" y="106" width="94" height="24" rx="6" fill="#047857"/>
+                <text x="51" y="122" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">2. Dinding Sel</text>
+              </g>
+
+              <!-- Membran Plasma -->
+              <line x1="125" y1="210" x2="58" y2="235" stroke="#0f172a" stroke-width="1.5"/>
+              <g class="cell-hotspot" onclick="inspectOrganelle('membran')">
+                <rect x="2" y="232" width="112" height="24" rx="6" fill="#b45309"/>
+                <text x="58" y="248" font-size="10.5" fill="#fff" font-weight="bold" text-anchor="middle">3. Membran Plasma</text>
+              </g>
+
+              <!-- Sitoplasma -->
+              <line x1="165" y1="225" x2="90" y2="330" stroke="#0f172a" stroke-width="1.5"/>
+              <g class="cell-hotspot" onclick="inspectOrganelle('sitoplasma')">
+                <rect x="35" y="330" width="98" height="24" rx="6" fill="#ca8a04"/>
+                <text x="84" y="346" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">4. Sitoplasma</text>
+              </g>
+
+              <!-- Nukleoid -->
+              <line x1="295" y1="215" x2="265" y2="335" stroke="#0f172a" stroke-width="1.5"/>
+              <g class="cell-hotspot" onclick="inspectOrganelle('nukleoid')">
+                <rect x="215" y="335" width="96" height="24" rx="6" fill="#dc2626"/>
+                <text x="263" y="351" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">5. Nukleoid</text>
+              </g>
+
+              <!-- Plasmid -->
+              <line x1="415" y1="161" x2="475" y2="52" stroke="#0f172a" stroke-width="1.5"/>
+              <g class="cell-hotspot" onclick="inspectOrganelle('plasmid')">
+                <rect x="440" y="30" width="88" height="24" rx="6" fill="#7c3aed"/>
+                <text x="484" y="46" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">6. Plasmid</text>
+              </g>
+
+              <!-- Ribosom -->
+              <line x1="380" y1="215" x2="425" y2="335" stroke="#0f172a" stroke-width="1.5"/>
+              <g class="cell-hotspot" onclick="inspectOrganelle('ribosom')">
+                <rect x="380" y="335" width="92" height="24" rx="6" fill="#1e3a8a"/>
+                <text x="426" y="351" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">7. Ribosom</text>
+              </g>
+
+              <!-- Flagela -->
+              <line x1="590" y1="175" x2="590" y2="115" stroke="#0f172a" stroke-width="1.5"/>
+              <g class="cell-hotspot" onclick="inspectOrganelle('flagela')">
+                <rect x="545" y="92" width="86" height="24" rx="6" fill="#d97706"/>
+                <text x="588" y="108" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">8. Flagela</text>
+              </g>
+
+              <!-- Pili -->
+              <line x1="270" y1="68" x2="270" y2="45" stroke="#0f172a" stroke-width="1.5"/>
+              <g class="cell-hotspot" onclick="inspectOrganelle('pili')">
+                <rect x="215" y="22" width="115" height="24" rx="6" fill="#0284c7"/>
+                <text x="272" y="38" font-size="11" fill="#fff" font-weight="bold" text-anchor="middle">9. Pili / Fimbriae</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Panel Penjelasan Organel -->
+          <div class="card-white">
+            <span class="discovery-badge" id="orgStatusBadge">Klik Bagian Sel di Samping</span>
+            <h3 id="orgTitle" style="color:var(--primary-dark); margin-bottom:8px;">Pilih Struktur Sel Bakteri</h3>
+            <p id="orgDesc" style="font-size:0.93rem; color:var(--text-main); margin-bottom:12px;">
+              Arahkan kursor atau sentuh salah satu label bernomor 1 hingga 9 pada diagram sel bakteri untuk mempelajari komposisi kimia dan fungsi biologisnya.
+            </p>
+            <div id="orgFuncBox" style="background:#f0fdf4; border-left:4px solid var(--success); padding:12px; border-radius:8px; font-size:0.9rem;">
+              <strong>Fungsi Utama:</strong> <span id="orgFunc">Belum ada bagian yang dipilih.</span>
+            </div>
+            <div id="orgExtraNote" style="margin-top:10px; font-size:0.84rem; color:var(--text-muted);"></div>
+          </div>
+        </div>
+
+        <div id="mod2CompleteBanner" class="feedback-box feedback-success">
+          <strong>Luar Biasa!</strong> Kamu telah mengamati seluruh 9 bagian struktur sel bakteri. Data struktur sel siap digunakan untuk tahap berikutnya!
+        </div>
+
+        <div class="module-footer-nav">
+          <button class="btn btn-outline" onclick="navigateTo('mod1')">&larr; Modul 1: Peta Konsep</button>
+          <button class="btn btn-primary" onclick="navigateTo('mod3')">Lanjut ke Modul 3: Bentuk Bakteri &rarr;</button>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODUL 3: BENTUK DAN SUSUNAN BAKTERI (DATA COLLECTION)
+           ==================================================================== -->
+      <section id="sec-mod3" class="module-section">
+        <div class="module-header">
+          <span class="discovery-badge">Tahap 3 Discovery Learning: Data Collection (Morfologi Bakteri)</span>
+          <h2>Modul 3. Bentuk Dasar dan Susunan Koloni Bakteri</h2>
+          <p>Klik setiap kartu ilustrasi morfologi bakteri untuk mempelajari karakteristik dan contoh spesiesnya, lalu uji pemahamanmu di aktivitas mencocokkan.</p>
+        </div>
+
+        <!-- Galeri Visual Bentuk & Susunan Bakteri -->
+        <div class="shape-gallery" id="shapeGalleryGrid"></div>
+
+        <!-- Panel Detail Morfologi -->
+        <div class="card-white" style="margin-bottom:20px; border-left:5px solid var(--secondary);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <h3 id="shapeDetailTitle" style="color:var(--secondary-dark);">Monokokus (Bentuk Bulat Tunggal)</h3>
+            <span id="shapeDetailCategory" class="discovery-badge" style="margin:0;">Bentuk Kokus (Bulat)</span>
+          </div>
+          <p id="shapeDetailDesc" style="margin:8px 0; font-size:0.94rem;">Sel bakteri berbentuk bulat sempurna (bola) yang hidup menyendiri (soliter).</p>
+          <p style="font-size:0.92rem; color:var(--primary-dark);"><strong>Contoh Spesies:</strong> <span id="shapeDetailSpecies"><em>Micrococcus luteus</em>, <em>Monococcus gonorrhoeae</em></span></p>
+        </div>
+
+        <!-- Aktivitas Mencocokkan Gambar dengan Nama Bentuk Bakteri -->
+        <div class="card">
+          <h3 style="color:var(--primary-dark); margin-bottom:6px;">Aktivitas Interaktif: Cocokkan Visual dengan Nama Bentuk/Susunan</h3>
+          <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:12px;">Amati 4 gambar mikroskopis di bawah ini, lalu pilih nama morfologi yang tepat pada masing-masing pilihan!</p>
+
+          <div class="grid-2" id="shapeMatchContainer"></div>
+
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="checkShapeMatching()">Periksa Jawaban Pencocokan</button>
+            <button class="btn btn-outline" onclick="initShapeMatching()">Acak Soal Baru</button>
+          </div>
+          <div id="shapeMatchFeedback" class="feedback-box"></div>
+        </div>
+
+        <div class="module-footer-nav">
+          <button class="btn btn-outline" onclick="navigateTo('mod2')">&larr; Modul 2: Struktur Sel</button>
+          <button class="btn btn-primary" onclick="navigateTo('mod4')">Lanjut ke Modul 4: Simulasi Reproduksi &rarr;</button>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODUL 4: SIMULASI REPRODUKSI & TRANSFER GEN HORIZONTAL
+           ==================================================================== -->
+      <section id="sec-mod4" class="module-section">
+        <div class="module-header">
+          <span class="discovery-badge">Tahap 4 Discovery Learning: Data Processing (Simulasi Proses)</span>
+          <h2>Modul 4. Simulasi Reproduksi &amp; Transfer Materi Genetik</h2>
+          <p>Lakukan eksperimen simulasi pertumbuhan populasi bakteri dan pelajari perbedaan reproduksi aseksual dengan rekombinasi genetik.</p>
+        </div>
+
+        <div class="tab-bar">
+          <button class="tab-btn active" id="tabBtnBiner" onclick="switchMod4Tab('biner')">A. Simulasi Pembelahan Biner</button>
+          <button class="tab-btn" id="tabBtnTransfer" onclick="switchMod4Tab('transfer')">B. Simulasi Transfer Gen Horizontal</button>
+        </div>
+
+        <!-- BAGIAN A: SIMULASI PEMBELAHAN BINER -->
+        <div id="mod4PanelBiner">
+          <div class="sim-stage-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+              <strong style="color:#34d399;" id="binerStageTitle">Tahap 1: Sel Bakteri Induk Siap Membelah</strong>
+              <span style="font-size:0.85rem; background:rgba(255,255,255,0.12); padding:4px 10px; border-radius:999px;" id="binerStepIndicator">Langkah 1 / 5</span>
+            </div>
+
+            <!-- Kanvas SVG Animasi 5 Tahap Pembelahan Biner -->
+            <svg id="binerSvgStage" viewBox="0 0 600 180" width="100%" style="background:#1e293b; border-radius:10px; display:block;"></svg>
+
+            <p id="binerStageDesc" style="margin-top:10px; font-size:0.9rem; color:#e2e8f0;">
+              Sel bakteri dewasa memiliki satu kromosom sirkuler (DNA) yang menempel pada membran plasma dan siap menggandakan diri.
+            </p>
+          </div>
+
+          <!-- Kontrol Animasi Pembelahan Biner -->
+          <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:18px;">
+            <button class="btn btn-primary" onclick="startBinerAnim()">&#9654; Mulai Animasi</button>
+            <button class="btn btn-accent" onclick="pauseBinerAnim()">&#10074;&#10074; Jeda</button>
+            <button class="btn btn-secondary" onclick="stepBinerAnim()">Langkah Berikutnya &rarr;</button>
+            <button class="btn btn-outline" onclick="resetBinerAnim()">&#8634; Ulangi / Reset</button>
+          </div>
+
+          <!-- Kalkulator & Visualisasi Populasi N = N0 * 2^n -->
+          <div class="card">
+            <h3 style="color:var(--primary-dark); margin-bottom:8px;">Simulasi Pertumbuhan Eksponensial Populasi Bakteri</h3>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:12px;">
+              Geser pengatur <strong>Jumlah Sel Awal (N&#8320;)</strong> dan <strong>Jumlah Generasi (n)</strong> untuk mengamati ledakan jumlah sel bakteri!
+            </p>
+
+            <div class="grid-2" style="margin-bottom:12px;">
+              <div>
+                <label for="sliderN0" style="font-weight:700; font-size:0.9rem;">Jumlah Bakteri Awal (N&#8320;): <span id="valN0" style="color:var(--primary);">1</span> sel</label>
+                <input type="range" id="sliderN0" min="1" max="10" value="1" style="width:100%; margin-top:6px;" oninput="updatePopulationCalc()"/>
+              </div>
+              <div>
+                <label for="sliderGen" style="font-weight:700; font-size:0.9rem;">Jumlah Generasi (n): <span id="valGen" style="color:var(--secondary);">3</span> generasi (<span id="valMinutes">60</span> menit)</label>
+                <input type="range" id="sliderGen" min="0" max="10" value="3" style="width:100%; margin-top:6px;" oninput="updatePopulationCalc()"/>
+              </div>
+            </div>
+
+            <div class="formula-box" id="populationFormulaDisplay">
+              N = N&#8320; &times; 2&#8319; = 1 &times; 2&sup3; = 8 Sel Bakteri
+            </div>
+
+            <!-- Visualisasi Koloni Bakteri -->
+            <div style="margin-top:12px;">
+              <div style="font-size:0.82rem; font-weight:600; color:var(--text-muted); margin-bottom:6px;">
+                Visualisasi Koloni Sel (Maksimal ditampilkan 128 ikon sel agar ringan):
+              </div>
+              <div id="colonyVisualGrid" style="display:flex; flex-wrap:wrap; gap:4px; padding:12px; background:#ffffff; border:1px solid var(--border-color); border-radius:8px; min-height:60px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BAGIAN B: SIMULASI TRANSFER MATERI GENETIK -->
+        <div id="mod4PanelTransfer" style="display:none;">
+          <div class="card" style="background:#fef3c7; border-color:#fcd34d; font-size:0.92rem;">
+            <strong>Konsep Kunci Biologi:</strong> <strong>Transformasi, Transduksi, dan Konjugasi</strong> adalah mekanisme <em>transfer gen horizontal</em> (rekombinasi genetik) untuk meningkatkan variasi sifat bakteri (misalnya resistensi antibiotik), <strong>bukan</strong> reproduksi yang langsung menambah jumlah individu baru!
+          </div>
+
+          <div class="tab-bar">
+            <button class="btn btn-secondary" id="btnMechTransf" onclick="selectTransferMech('transformasi')">1. Transformasi</button>
+            <button class="btn btn-outline" id="btnMechTransd" onclick="selectTransferMech('transduksi')">2. Transduksi</button>
+            <button class="btn btn-outline" id="btnMechKonj" onclick="selectTransferMech('konjugasi')">3. Konjugasi</button>
+          </div>
+
+          <div class="sim-stage-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:8px;">
+              <h3 id="transferTitle" style="color:#38bdf8;">Mekanisme Transformasi</h3>
+              <button class="btn btn-accent" style="padding:6px 12px; font-size:0.82rem;" onclick="replayTransferAnim()">&#8634; Putar Ulang Tahapan</button>
+            </div>
+
+            <svg id="transferSvgStage" viewBox="0 0 600 190" width="100%" style="background:#1e293b; border-radius:10px; display:block;"></svg>
+
+            <div id="transferStepsText" style="margin-top:10px; font-size:0.9rem; color:#e2e8f0;"></div>
+          </div>
+
+          <!-- Tabel Perbandingan Ketiga Mekanisme -->
+          <div class="card-white" style="overflow-x:auto; margin-bottom:14px;">
+            <h4 style="color:var(--primary-dark); margin-bottom:8px;">Perbandingan Tiga Mekanisme Transfer Gen Horizontal</h4>
+            <table style="width:100%; border-collapse:collapse; font-size:0.88rem;">
+              <thead>
+                <tr style="background:var(--primary); color:#fff; text-align:left;">
+                  <th style="padding:8px 10px;">Mekanisme</th>
+                  <th style="padding:8px 10px;">Perantara / Agen</th>
+                  <th style="padding:8px 10px;">Proses Utama</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid var(--border-color);">
+                  <td style="padding:8px 10px; font-weight:700;">Transformasi</td>
+                  <td style="padding:8px 10px;">Tanpa perantara (DNA bebas di lingkungan)</td>
+                  <td style="padding:8px 10px;">Sel bakteri kompeten menyerap fragmen DNA bebas dari sel bakteri lain yang telah lisis.</td>
+                </tr>
+                <tr style="border-bottom:1px solid var(--border-color); background:#f8fafc;">
+                  <td style="padding:8px 10px; font-weight:700;">Transduksi</td>
+                  <td style="padding:8px 10px;">Virus bakteriofag (fag)</td>
+                  <td style="padding:8px 10px;">Bakteriofag memindahkan fragmen DNA dari bakteri inang sebelumnya ke bakteri inang baru.</td>
+                </tr>
+                <tr>
+                  <td style="padding:8px 10px; font-weight:700;">Konjugasi</td>
+                  <td style="padding:8px 10px;">Pilus seks (jembatan sitoplasma)</td>
+                  <td style="padding:8px 10px;">Kontak langsung antara bakteri donor (F+) dan resipien (F-) untuk mentransfer salinan plasmid.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pertanyaan Refleksi Singkat -->
+          <div class="card">
+            <h4 style="color:var(--secondary-dark); margin-bottom:6px;">Pertanyaan Refleksi (Data Processing)</h4>
+            <p style="font-size:0.9rem; margin-bottom:8px;">Jika dua sel bakteri melakukan <strong>konjugasi</strong>, berapakah jumlah total sel bakteri setelah proses konjugasi selesai?</p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="btn btn-outline" onclick="checkRefleksiMod4(false)">4 sel bakteri baru</button>
+              <button class="btn btn-outline" onclick="checkRefleksiMod4(true)">Tetap 2 sel bakteri (hanya terjadi pertukaran plasmid)</button>
+              <button class="btn btn-outline" onclick="checkRefleksiMod4(false)">1 sel zigot raksasa</button>
+            </div>
+            <div id="feedbackRefleksiMod4" class="feedback-box"></div>
+          </div>
+        </div>
+
+        <div class="module-footer-nav">
+          <button class="btn btn-outline" onclick="navigateTo('mod3')">&larr; Modul 3: Bentuk Bakteri</button>
+          <button class="btn btn-primary" onclick="navigateTo('mod5')">Lanjut ke Modul 5: Klasifikasi Monera &rarr;</button>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODUL 5: KLASIFIKASI INTERAKTIF MONERA (VERIFICATION - DRAG & DROP)
+           ==================================================================== -->
+      <section id="sec-mod5" class="module-section">
+        <div class="module-header">
+          <span class="discovery-badge">Tahap 5 Discovery Learning: Verification (Uji Klasifikasi)</span>
+          <h2>Modul 5. Permainan Klasifikasi Archaebacteria &amp; Eubacteria</h2>
+          <p>Kelompokkan kartu organisme dan karakteristik habitat berikut ke dalam zona <strong>Archaebacteria</strong> atau <strong>Eubacteria</strong>.</p>
+        </div>
+
+        <!-- Penjelasan Klasifikasi Modern vs Sekolah -->
+        <div class="card" style="background:#f0fdf4; border-color:#86efac; font-size:0.9rem;">
+          <strong>Catatan Taksonomi Modern (Sistem Tiga Domain Carl Woese):</strong> Dalam klasifikasi biologi modern, <strong>Archaea</strong> dan <strong>Bacteria</strong> dipisahkan menjadi dua <em>Domain</em> yang berbeda karena perbedaan susunan RNA ribosom (rRNA), lipid membran plasma, serta ketiadaan peptidoglikan pada dinding sel Archaea. Namun, pada pembelajaran SMA sering diperkenalkan sebagai dua sub-kelompok utama dalam pembahasan Monera, yakni <em>Archaebacteria</em> dan <em>Eubacteria</em>.
+        </div>
+
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:8px;">
+          <strong>Cara Bermain (Mouse &amp; Layar Sentuh):</strong> Seret (<em>drag</em>) kartu ke kotak tujuan, <strong>ATAU</strong> ketuk/klik kartu hingga berwarna kuning lalu ketuk kotak kelompok tujuan!
+        </p>
+
+        <!-- Kolam Kartu Acak -->
+        <div class="dnd-pool" id="dndCardPool" ondragover="allowDrop(event)" ondrop="dropCard(event, 'pool')" onclick="tapZone('pool')"></div>
+
+        <!-- Dua Zona Klasifikasi -->
+        <div class="grid-2">
+          <div>
+            <h3 style="color:var(--primary-dark); margin-bottom:6px;">A. ARCHAEBACTERIA (Domain Archaea)</h3>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px;">Dinding sel tanpa peptidoglikan; mencakup Metanogen, Halofil ekstrem, dan Termoasidofil.</p>
+            <div class="dropzone" id="zone-archaea" ondragover="allowDrop(event)" ondragleave="leaveDrop(event)" ondrop="dropCard(event, 'archaea')" onclick="tapZone('archaea')"></div>
+          </div>
+
+          <div>
+            <h3 style="color:var(--secondary-dark); margin-bottom:6px;">B. EUBACTERIA (Domain Bacteria)</h3>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px;">Bakteri sejati berdinding sel peptidoglikan; kosmopolit di tanah, air, udara, hingga tubuh makhluk hidup.</p>
+            <div class="dropzone eubacteria-zone" id="zone-eubacteria" ondragover="allowDrop(event)" ondragleave="leaveDrop(event)" ondrop="dropCard(event, 'eubacteria')" onclick="tapZone('eubacteria')"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <button class="btn btn-primary" onclick="verifyClassification()">Periksa Jawaban Klasifikasi</button>
+          <button class="btn btn-outline" onclick="initDndGame()">&#8634; Ulangi Permainan</button>
+          <span id="dndScoreBadge" style="font-weight:700; color:var(--primary-dark);"></span>
+        </div>
+
+        <div id="dndFeedbackBox" class="feedback-box"></div>
+
+        <div class="module-footer-nav">
+          <button class="btn btn-outline" onclick="navigateTo('mod4')">&larr; Modul 4: Simulasi Reproduksi</button>
+          <button class="btn btn-primary" onclick="navigateTo('modPeran')">Lanjut ke Modul 6: Peranan Monera &rarr;</button>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODUL PERANAN MONERA & STUDI KASUS KONTEKSTUAL
+           ==================================================================== -->
+      <section id="sec-modPeran" class="module-section">
+        <div class="module-header">
+          <span class="discovery-badge">Aplikasi Konsep &amp; Pemecahan Masalah Kontekstual</span>
+          <h2>Modul 6. Peranan Monera dalam Kehidupan &amp; Studi Kasus</h2>
+          <p>Analisis peran bakteri yang menguntungkan maupun merugikan manusia, kemudian pecahkan studi kasus kehidupan sehari-hari.</p>
+        </div>
+
+        <div class="grid-2">
+          <!-- Peran Menguntungkan -->
+          <div class="card-white" style="border-top:4px solid var(--success);">
+            <h3 style="color:var(--success); margin-bottom:10px;">Peranan Menguntungkan</h3>
+            <ul style="padding-left:18px; font-size:0.9rem; display:flex; flex-direction:column; gap:8px;">
+              <li><strong><em>Rhizobium leguminosarum</em>:</strong> Bersimbiosis pada bintil akar tanaman kacang-kacangan (Leguminosae) untuk memfiksasi nitrogen bebas (N&#8322;) menjadi nitrat penyubur tanah.</li>
+              <li><strong><em>Lactobacillus bulgaricus</em> &amp; <em>L. casei</em>:</strong> Berperan dalam fermentasi susu menjadi yoghurt dan keju melalui produksi asam laktat.</li>
+              <li><strong><em>Escherichia coli</em> (strain non-patogen):</strong> Hidup mutualisme di usus besar manusia, membantu pembusukan sisa makanan dan sintesis <strong>vitamin K</strong>.</li>
+              <li><strong>Bakteri Pengurai (Saprofit):</strong> Menguraikan bangkai dan sampah organik sehingga mendaur ulang unsur hara (karbon, nitrogen) di ekosistem.</li>
+              <li><strong><em>Cyanobacteria</em> (misal <em>Anabaena</em>, <em>Spirulina</em>):</strong> Organisme fotoautotrof penghasil oksigen, sumber protein tinggi (PST), dan penambat nitrogen.</li>
+            </ul>
+          </div>
+
+          <!-- Peran Merugikan -->
+          <div class="card-white" style="border-top:4px solid var(--danger);">
+            <h3 style="color:var(--danger); margin-bottom:10px;">Peranan Merugikan (Patogen &amp; Pembusuk)</h3>
+            <ul style="padding-left:18px; font-size:0.9rem; display:flex; flex-direction:column; gap:8px;">
+              <li><strong><em>Mycobacterium tuberculosis</em>:</strong> Penyebab penyakit tuberkulosis (TBC) yang menyerang jaringan paru-paru dan menular melalui percikan dahak (droplet).</li>
+              <li><strong><em>Vibrio cholerae</em>:</strong> Bakteri berbentuk koma penyebab penyakit kolera dengan gejala diare akut dan dehidrasi berat akibat air minum tercemar.</li>
+              <li><strong><em>Salmonella enterica</em>:</strong> Penyebab salmonelosis (keracunan makanan dan demam tifoid) akibat konsumsi daging, telur, atau air yang kurang matang/higienis.</li>
+              <li><strong><em>Clostridium botulinum</em> &amp; Bakteri Pembusuk:</strong> Merusak bahan makanan kaleng maupun pangan segar serta menghasilkan racun botulin yang berbahaya.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Aktivitas Studi Kasus -->
+        <div class="card" style="margin-top:16px; background:#fffbeb; border-color:#fcd34d;">
+          <h3 style="color:#92400e; margin-bottom:6px;">Aktivitas Studi Kasus: Tantangan Kesehatan &amp; Pangan di Lingkungan Sekolah</h3>
+          <p style="font-size:0.92rem; margin-bottom:12px;">
+            <strong>Kasus:</strong> <em>"Di lingkungan sekitar kantin dan permukiman siswa, ditemukan kasus beberapa warga mengalami diare setelah mengonsumsi jajanan terbuka di dekat saluran air yang tergenang, sementara di sisi lain banyak petani lokal mengeluhkan tanah pertanian yang mulai kurang subur akibat ketergantungan pupuk kimia. Bagaimana cara memanfaatkan bakteri yang menguntungkan dan mencegah dampak bakteri yang merugikan dalam kehidupan sehari-hari?"</em>
+          </p>
+
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div>
+              <label for="caseStep1" style="font-weight:700; font-size:0.88rem;">1. Identifikasi Masalah &amp; Penyebab Biologis:</label>
+              <select id="caseStep1" class="input-field" style="width:100%; margin-top:4px;">
+                <option value="">-- Pilih analisis penyebab biologis yang tepat --</option>
+                <option value="correct">Kontaminasi pangan terbuka oleh bakteri patogen (seperti Vibrio cholerae / Salmonella) dari vektor lalat &amp; air kotor, serta berkurangnya bakteri penyubur tanah.</option>
+                <option value="wrong1">Semua bakteri di udara dan tanah bersifat mematikan sehingga seluruh mikroorganisme harus dimusnahkan.</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="caseStep2" style="font-weight:700; font-size:0.88rem;">2. Rancangan Solusi Pemanfaatan &amp; Pencegahan:</label>
+              <textarea id="caseStep2" rows="3" class="input-field" style="width:100%; margin-top:4px;" placeholder="Tuliskan usulan solusi konkret untuk mencegah penyakit bakteri patogen sekaligus memanfaatkan bakteri menguntungkan bagi pertanian/pangan..."></textarea>
+            </div>
+
+            <div>
+              <button class="btn btn-accent" onclick="evaluateCaseStudy()">Kirim &amp; Analisis Studi Kasus</button>
+            </div>
+          </div>
+          <div id="caseStudyFeedback" class="feedback-box"></div>
+        </div>
+
+        <div class="module-footer-nav">
+          <button class="btn btn-outline" onclick="navigateTo('mod5')">&larr; Modul 5: Klasifikasi Monera</button>
+          <button class="btn btn-primary" onclick="navigateTo('mod6')">Lanjut ke Modul 7: Kuis &amp; Kesimpulan &rarr;</button>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           MODUL 6: KUIS INTERAKTIF & KESIMPULAN (GENERALIZATION)
+           ==================================================================== -->
+      <section id="sec-mod6" class="module-section">
+        <div class="module-header">
+          <span class="discovery-badge">Tahap 6 Discovery Learning: Generalization (Evaluasi &amp; Kesimpulan)</span>
+          <h2>Modul 7. Evaluasi Komprehensif &amp; Kesimpulan Akhir</h2>
+          <p>Uji penguasaanmu melalui <strong>15 soal Pilihan Ganda/Benar-Salah/Analisis</strong> dan <strong>5 soal Menjodohkan</strong> (total 20 butir evaluasi).</p>
+        </div>
+
+        <!-- Kontainer Kuis -->
+        <div id="quizActiveContainer" class="card-white">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; padding-bottom:12px; border-bottom:1px solid var(--border-color); margin-bottom:16px;">
+            <span style="font-weight:700; color:var(--primary-dark);" id="quizQuestionCounter">Soal 1 dari 20</span>
+            <span class="discovery-badge" style="margin:0;" id="quizQuestionTypeBadge">Pilihan Ganda</span>
+          </div>
+
+          <!-- Area Soal Dinamis -->
+          <div id="quizQuestionBody"></div>
+
+          <!-- Navigasi Nomor Soal Cepat -->
+          <div style="margin-top:16px; padding-top:12px; border-top:1px dashed var(--border-color);">
+            <div style="font-size:0.8rem; color:var(--text-muted); margin-bottom:6px;">Navigasi Nomor Soal (Hijau = Sudah Dijawab):</div>
+            <div id="quizNumberDots" style="display:flex; flex-wrap:wrap; gap:5px;"></div>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:18px; flex-wrap:wrap; gap:10px;">
+            <button class="btn btn-outline" id="btnQuizPrev" onclick="prevQuizQuestion()">&larr; Sebelumnya</button>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-secondary" id="btnQuizNext" onclick="nextQuizQuestion()">Berikutnya &rarr;</button>
+              <button class="btn btn-primary" id="btnQuizSubmit" onclick="submitFinalQuiz()" style="display:none;">Selesai &amp; Lihat Nilai</button>
+            </div>
+          </div>
+          <div id="quizWarningBox" class="feedback-box feedback-error"></div>
+        </div>
+
+        <!-- Hasil Evaluasi & Pembahasan (Muncul Setelah Kuis Selesai) -->
+        <div id="quizResultContainer" style="display:none;">
+          <div class="card" style="background:linear-gradient(135deg, #0f766e, #0369a1); color:#ffffff; text-align:center;">
+            <p style="font-size:0.9rem; opacity:0.9;">Hasil Evaluasi Pembelajaran Biologi &bull; SMAN 2 Tanjung Raja</p>
+            <h3 id="resultStudentLabel" style="font-size:1.3rem; margin:4px 0;">Peserta Didik</h3>
+            <div style="font-size:2.6rem; font-weight:800; margin:8px 0;" id="resultScoreBig">0 / 20 (0%)</div>
+            <div id="resultCategoryBadge" style="display:inline-block; background:#fef08a; color:#713f12; padding:6px 16px; border-radius:999px; font-weight:700; font-size:0.95rem;">
+              Kategori: -
+            </div>
+            <div style="margin-top:16px;">
+              <button class="btn btn-outline" style="background:#ffffff;" onclick="restartQuiz()">&#8634; Ulangi Kuis Evaluasi</button>
+            </div>
+          </div>
+
+          <!-- Kesimpulan Pembelajaran (Generalization) -->
+          <div class="card-white" style="margin-bottom:16px; border-left:5px solid var(--primary);">
+            <h3 style="color:var(--primary-dark); margin-bottom:8px;">Kesimpulan Umum Pembelajaran (Generalization)</h3>
+            <ul style="padding-left:20px; font-size:0.92rem; display:flex; flex-direction:column; gap:6px;">
+              <li><strong>Monera</strong> adalah organisme uniseluler prokariotik (tidak memiliki membran inti) dengan materi genetik pada daerah nukleoid dan ribosom 70S.</li>
+              <li>Berdasarkan struktur dinding sel, membran lipid, dan rRNA, Monera dikelompokkan menjadi <strong>Archaebacteria</strong> (hidup di habitat ekstrem, tanpa peptidoglikan) dan <strong>Eubacteria</strong> (bakteri sejati berdinding peptidoglikan).</li>
+              <li>Bakteri bereproduksi secara aseksual melalui <strong>pembelahan biner</strong> (pertumbuhan eksponensial <em>N = N&#8320; &times; 2&#8319;</em>), serta meningkatkan keragaman genetik melalui <strong>transfer gen horizontal</strong> (transformasi, transduksi, konjugasi).</li>
+              <li>Monera memiliki peran vital dalam ekosistem dan kehidupan manusia (fiksasi nitrogen, fermentasi, dekomposer) sekaligus mencakup spesies patogen yang perlu dicegah melalui perilaku hidup bersih dan sehat.</li>
+            </ul>
+          </div>
+
+          <!-- Pembahasan Lengkap Setiap Soal -->
+          <div class="card-white">
+            <h3 style="color:var(--secondary-dark); margin-bottom:12px;">Pembahasan Lengkap Jawaban Evaluasi</h3>
+            <div id="quizReviewList"></div>
+          </div>
+        </div>
+
+        <div class="module-footer-nav">
+          <button class="btn btn-outline" onclick="navigateTo('modPeran')">&larr; Modul 6: Peranan Monera</button>
+          <button class="btn btn-secondary" onclick="navigateTo('home')">Kembali ke Halaman Beranda</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: PETUNJUK PENGGUNAAN
+       ======================================================================== -->
+  <div class="modal-backdrop" id="modalGuide" onclick="closeModalOnBackdrop(event, 'modalGuide')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="color:var(--primary-dark);">Petunjuk Penggunaan Media Pembelajaran</h3>
+        <button class="btn btn-outline" style="padding:4px 10px;" onclick="closeModal('modalGuide')">Tutup &times;</button>
+      </div>
+      <ol style="padding-left:20px; font-size:0.93rem; display:flex; flex-direction:column; gap:8px;">
+        <li><strong>Identitas Peserta Didik:</strong> Masukkan nama lengkap dan kelas Anda pada halaman Beranda agar tercatat pada progres dan sertifikat skor akhir.</li>
+        <li><strong>Navigasi Modul:</strong> Gunakan menu di sebelah kiri (atau atas pada layar ponsel) maupun tombol <em>Lanjut / Kembali</em> di bagian bawah setiap halaman.</li>
+        <li><strong>Eksplorasi Interaktif:</strong> Klik setiap simpul peta konsep, bagian organel sel, kartu bentuk bakteri, serta jalankan simulasi pembelahan biner dan transfer gen.</li>
+        <li><strong>Permainan Klasifikasi:</strong> Seret kartu ke kotak kelompok yang sesuai. Pada perangkat layar sentuh, Anda juga dapat mengetuk kartu lalu mengetuk kotak tujuan.</li>
+        <li><strong>Penyimpanan Otomatis Offline:</strong> Progres belajar Anda disimpan secara otomatis di browser perangkat ini tanpa memerlukan koneksi internet.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: GLOSARIUM ISTILAH BIOLOGI
+       ======================================================================== -->
+  <div class="modal-backdrop" id="modalGlossary" onclick="closeModalOnBackdrop(event, 'modalGlossary')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="color:var(--primary-dark);">Glosarium Istilah Biologi (Materi Monera)</h3>
+        <button class="btn btn-outline" style="padding:4px 10px;" onclick="closeModal('modalGlossary')">Tutup &times;</button>
+      </div>
+      <div id="glossaryContent" style="font-size:0.92rem;"></div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL: REFERENSI ILMIAH
+       ======================================================================== -->
+  <div class="modal-backdrop" id="modalRef" onclick="closeModalOnBackdrop(event, 'modalRef')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 style="color:var(--primary-dark);">Daftar Pustaka &amp; Referensi Ilmiah</h3>
+        <button class="btn btn-outline" style="padding:4px 10px;" onclick="closeModal('modalRef')">Tutup &times;</button>
+      </div>
+      <ul style="padding-left:20px; font-size:0.9rem; display:flex; flex-direction:column; gap:8px;">
+        <li>Campbell, N. A., Urry, L. A., Cain, M. L., Wasserman, S. A., Minorsky, P. V., &amp; Reece, J. B. (2020). <em>Biology: A Global Approach</em> (12th ed.). Pearson Education.</li>
+        <li>Madigan, M. T., Bender, K. S., Buckley, D. H., Sattley, W. M., &amp; Stahl, D. A. (2021). <em>Brock Biology of Microorganisms</em> (16th ed.). Pearson.</li>
+        <li>Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi Republik Indonesia. (2022). <em>Buku Panduan Guru dan Siswa Ilmu Pengetahuan Alam (Biologi) untuk SMA Kelas X</em>. Pusat Perbukuan BSKAP.</li>
+        <li>Woese, C. R., Kandler, O., &amp; Wheelis, M. L. (1990). Towards a natural system of organisms: proposal for the domains Archaea, Bacteria, and Eucarya. <em>Proceedings of the National Academy of Sciences</em>, 87(12), 4576&ndash;4579.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+    Media Pembelajaran Biologi Interaktif Offline &bull; Materi Kingdom Monera (Kelas X SMA) &bull; SMAN 2 Tanjung Raja
+  </footer>
+
+  <!-- ========================================================================
+       JAVASCRIPT MURNI (VANILLA JS - 100% OFFLINE & MANDIRI)
+       ======================================================================== -->
+  <script>
+    /* ========================================================================
+       1. MANAJEMEN STATE & PENYIMPANAN LOKAL (AMAN JIKA LOCALSTORAGE TERBLOKIR)
+       ======================================================================== */
+    const STORAGE_KEY = 'monera_sman2_tr_v1';
+    let appState = {
+      studentName: '',
+      completedModules: {
+        home: true,
+        mod1: false,
+        mod2: false,
+        mod3: false,
+        mod4: false,
+        mod5: false,
+        modPeran: false,
+        mod6: false
+      },
+      exploredConcepts: [],
+      exploredOrganelles: [],
+      quizScore: null
+    };
+
+    function saveState() {
+      try {
+        if (window.localStorage) {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+        }
+      } catch (e) {
+        // Fallback diam-diam jika mode incognito / file:// membatasi localStorage
+      }
+      updateProgressUI();
+    }
+
+    function loadState() {
+      try {
+        if (window.localStorage) {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            appState = Object.assign(appState, parsed);
+          }
+        }
+      } catch (e) {
+        // Tetap berjalan menggunakan state memori default
+      }
+      if (appState.studentName) {
+        document.getElementById('studentNameInput').value = appState.studentName;
+        document.getElementById('headerStudentName').textContent = 'Peserta Didik: ' + appState.studentName;
+      }
+      updateProgressUI();
+    }
+
+    function updateProgressUI() {
+      const keys = Object.keys(appState.completedModules);
+      let doneCount = 0;
+      keys.forEach(k => {
+        const dot = document.getElementById('dot-' + k);
+        if (appState.completedModules[k]) {
+          doneCount++;
+          if (dot) dot.classList.add('done');
+        } else {
+          if (dot) dot.classList.remove('done');
+        }
+      });
+      const pct = Math.round((doneCount / keys.length) * 100);
+      document.getElementById('globalProgressFill').style.width = pct + '%';
+      document.getElementById('globalProgressText').textContent = pct + '% (' + doneCount + '/' + keys.length + ' Bagian)';
+    }
+
+    function saveStudentName() {
+      const input = document.getElementById('studentNameInput').value.trim();
+      const fb = document.getElementById('nameSaveFeedback');
+      if (!input) {
+        fb.style.color = 'var(--danger)';
+        fb.textContent = 'Silakan ketik nama lengkap dan kelas Anda terlebih dahulu.';
+        return;
+      }
+      appState.studentName = input;
+      document.getElementById('headerStudentName').textContent = 'Peserta Didik: ' + input;
+      fb.style.color = 'var(--success)';
+      fb.textContent = 'Nama berhasil disimpan! Selamat belajar, ' + input + '.';
+      saveState();
+    }
+
+    /* ========================================================================
+       2. NAVIGASI ANTARMODUL & MODAL
+       ======================================================================== */
+    function navigateTo(moduleId) {
+      document.querySelectorAll('.module-section').forEach(sec => sec.classList.remove('active'));
+      const targetSec = document.getElementById('sec-' + moduleId);
+      if (targetSec) targetSec.classList.add('active');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-target') === moduleId);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openModal(modalId) {
+      document.getElementById(modalId).classList.add('open');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('open');
+    }
+
+    function closeModalOnBackdrop(e, modalId) {
+      if (e.target.id === modalId) closeModal(modalId);
+    }
+
+    /* ========================================================================
+       3. MODUL 1: PETA KONSEP MONERA (STIMULATION & PROBLEM STATEMENT)
+       ======================================================================== */
+    const conceptData = {
+      pengertian: {
+        title: 'Pengertian Kingdom Monera',
+        desc: 'Monera berasal dari kata Yunani "moneres" yang berarti tunggal. Kingdom Monera mencakup seluruh organisme mikroskopis bersel satu (uniseluler) yang memiliki struktur sel prokariotik.',
+        points: [
+          'Ukuran tubuh sangat kecil (umumnya 0,5 hingga 5 mikrometer) sehingga hanya dapat diamati dengan mikroskop.',
+          'Merupakan kelompok organisme tertua dan paling melimpah di Bumi.'
+        ]
+      },
+      prokariotik: {
+        title: 'Ciri Utama: Organisme Prokariotik',
+        desc: 'Sel prokariotik (pro = sebelum, karyon = inti) adalah tipe sel yang tidak memiliki membran pembungkus inti sel (karioteka), sehingga materi genetik kontak langsung dengan sitoplasma.',
+        points: [
+          'Tidak memiliki organel bermembran seperti mitokondria, kloroplas, retikulum endoplasma, maupun badan Golgi.',
+          'Respirasi seluler berlangsung pada lipatan membran plasma (mesosom).'
+        ]
+      },
+      nukleoid: {
+        title: 'Daerah Nukleoid & Ribosom',
+        desc: 'Meskipun tidak memiliki nukleus sejati, DNA bakteri terkonsentrasi pada suatu wilayah di dalam sitoplasma yang disebut daerah nukleoid.',
+        points: [
+          'DNA utama berbentuk sirkuler (melingkar) untai ganda tanpa protein histon sejati (pada Eubacteria).',
+          'Memiliki banyak ribosom berukuran 70S yang berfungsi sebagai tempat sintesis protein.'
+        ]
+      },
+      uniseluler: {
+        title: 'Uniseluler & Pembelahan Biner',
+        desc: 'Umumnya tubuh Monera tersusun atas satu sel tunggal yang mandiri (soliter), meskipun beberapa spesies membentuk koloni berupa rantai, untaian, atau kelompok.',
+        points: [
+          'Berkembang biak secara aseksual terutama melalui pembelahan biner (amitosis) yang berlangsung sangat cepat.',
+          'Pada kondisi ideal, satu sel bakteri dapat membelah setiap 20 menit.'
+        ]
+      },
+      habitat: {
+        title: 'Habitat Kosmopolit & Ekstrem',
+        desc: 'Monera bersifat kosmopolit (ditemukan hampir di semua tempat: tanah, air, udara, tubuh makhluk hidup) hingga lingkungan ekstrem seperti kawah vulkanik dan laut mati.',
+        points: [
+          'Kemampuan adaptasi tinggi didukung oleh dinding sel pelindung, kapsul, dan pembentukan endospora pada kondisi buruk.'
+        ]
+      },
+      bentuk: {
+        title: 'Keanekaragaman Bentuk Sel',
+        desc: 'Bentuk sel bakteri ditentukan oleh struktur dinding selnya yang kaku dan menjadi dasar identifikasi morfologi awal di laboratorium.',
+        points: [
+          'Tiga bentuk dasar utama adalah bulat (kokus), batang (basil), dan spiral (spirilum serta vibrio).'
+        ]
+      },
+      klasifikasi: {
+        title: 'Pembagian Kelompok Monera',
+        desc: 'Berdasarkan analisis biokimia dinding sel, struktur membran lipid, dan urutan RNA ribosom, Monera dibagi menjadi dua kelompok besar.',
+        points: [
+          '1. Archaebacteria (bakteri purba penghuni habitat ekstrem).',
+          '2. Eubacteria (bakteri sejati yang umum dijumpai di lingkungan sehari-hari).'
+        ]
+      },
+      archaea: {
+        title: 'Kelompok Archaebacteria',
+        desc: 'Organisme prokariotik yang dinding selnya tidak mengandung peptidoglikan dan memiliki ikatan eter pada lipid membrannya sehingga tahan suhu serta kadar garam ekstrem.',
+        points: [
+          'Terdiri atas kelompok Metanogen (penghasil gas metana), Halofil ekstrem (kadar garam tinggi), dan Termoasidofil (suhu panas & asam).'
+        ]
+      },
+      eubacteria: {
+        title: 'Kelompok Eubacteria',
+        desc: 'Kelompok bakteri sejati yang memiliki dinding sel tersusun atas peptidoglikan dan sensitif terhadap antibiotik.',
+        points: [
+          'Mencakup bakteri gram positif, bakteri gram negatif, serta Cyanobacteria (ganggang hijau-biru yang mampu berfotosintesis).'
+        ]
+      }
+    };
+
+    function selectConcept(key) {
+      const data = conceptData[key];
+      if (!data) return;
+
+      document.querySelectorAll('.concept-node').forEach(n => n.classList.remove('selected'));
+      const nodeEl = document.getElementById('node-' + key);
+      if (nodeEl) nodeEl.classList.add('selected');
+
+      document.getElementById('conceptTitle').textContent = data.title;
+      document.getElementById('conceptDesc').textContent = data.desc;
+      document.getElementById('conceptKeyPoints').innerHTML =
+        '<strong>Poin Penting:</strong><ul style="padding-left:18px; margin-top:4px;">' +
+        data.points.map(p => '<li>' + p + '</li>').join('') + '</ul>';
+
+      if (!appState.exploredConcepts.includes(key)) {
+        appState.exploredConcepts.push(key);
+        const count = Math.min(appState.exploredConcepts.length, 8);
+        document.getElementById('mod1ClickedCount').textContent = count;
+        if (count >= 6) {
+          appState.completedModules.mod1 = true;
+        }
+        saveState();
+      }
+    }
+
+    function submitHipotesisMod1() {
+      const val = document.getElementById('hipotesisMod1').value.trim();
+      const fb = document.getElementById('feedbackHipotesisMod1');
+      if (val.length < 8) {
+        fb.className = 'feedback-box feedback-error show';
+        fb.innerHTML = 'Tuliskan dugaan sementara kamu minimal satu kalimat singkat agar dapat dianalisis.';
+        return;
+      }
+      fb.className = 'feedback-box feedback-info show';
+      fb.innerHTML = '<strong>Hipotesis Tercatat!</strong> Dugaanmu: <em>"' + val + '"</em>. Secara ilmiah, kelompok <strong>Archaebacteria</strong> memiliki struktur lipid membran dan enzim khusus yang stabil pada suhu tinggi, kadar garam pekat, maupun pH ekstrem. Mari buktikan lebih lanjut pada modul berikutnya!';
+    }
+
+    function checkProblemStatement() {
+      const selected = document.querySelector('input[name="psMod1"]:checked');
+      const fb = document.getElementById('feedbackPsMod1');
+      if (!selected) {
+        fb.className = 'feedback-box feedback-error show';
+        fb.textContent = 'Pilih salah satu opsi rumusan masalah terlebih dahulu.';
+        return;
+      }
+      if (selected.value === 'B') {
+        fb.className = 'feedback-box feedback-success show';
+        fb.innerHTML = '<strong>Tepat Sekali!</strong> Sel prokariotik tidak memiliki membran inti, mitokondria, maupun kloroplas, sehingga rumusan masalah yang paling relevan adalah menyelidiki mekanisme pengaturan genetik di nukleoid dan metabolisme pada membran plasma.';
+        appState.completedModules.mod1 = true;
+        saveState();
+      } else {
+        fb.className = 'feedback-box feedback-error show';
+        fb.innerHTML = '<strong>Kurang Tepat.</strong> Ingat kembali bahwa Monera bersifat uniseluler prokariotik sehingga <em>tidak</em> memiliki mitokondria, kloroplas, maupun jaringan tubuh multiseluler. Coba pilih rumusan yang berfokus pada ketiadaan membran inti!';
+      }
+    }
+
+    /* ========================================================================
+       4. MODUL 2: STRUKTUR SEL BAKTERI (9 ORGANEL INTERAKTIF)
+       ======================================================================== */
+    const organelleData = [
+      {
+        id: 'kapsul',
+        num: '1',
+        name: 'Kapsul (Lapisan Lendir)',
+        desc: 'Lapisan polisakarida atau polipeptida kental yang menyelubungi bagian paling luar dinding sel bakteri tertentu.',
+        func: 'Melindungi sel bakteri dari kekeringan, membantu melekat pada permukaan inang, serta melindungi bakteri patogen dari fagositosis sel darah putih.',
+        note: 'Catatan: Tidak semua bakteri memiliki kapsul; umumnya dimiliki oleh bakteri penyebab penyakit (virulen).'
+      },
+      {
+        id: 'dinding',
+        num: '2',
+        name: 'Dinding Sel',
+        desc: 'Lapisan pelindung kaku yang terletak di sebelah luar membran plasma. Pada Eubacteria tersusun atas peptidoglikan (gabungan protein dan polisakarida).',
+        func: 'Memberi bentuk sel yang tetap (kokus, basil, spiral) serta melindungi sel agar tidak pecah (lisis) akibat tekanan osmotik.',
+        note: 'Catatan: Perbedaan ketebalan peptidoglikan menjadi dasar pewarnaan Gram (Gram positif vs Gram negatif).'
+      },
+      {
+        id: 'membran',
+        num: '3',
+        name: 'Membran Plasma',
+        desc: 'Selaput tipis yang tersusun atas fosfolipid bilayer dan protein yang membungkus sitoplasma.',
+        func: 'Mengatur keluar masuknya zat secara selektif permeabel serta berperan dalam respirasi seluler dan fotosintesis (pada bakteri fotosintetik).',
+        note: 'Catatan: Lekukan membran plasma ke arah dalam membentuk struktur yang disebut mesosom.'
+      },
+      {
+        id: 'sitoplasma',
+        num: '4',
+        name: 'Sitoplasma',
+        desc: 'Cairan koloid di dalam sel yang mengandung air (sekitar 80%), protein, karbohidrat, lemak, ion anorganik, serta enzim-enzim metabolisme.',
+        func: 'Menjadi medium berlangsungnya berbagai reaksi biokimia metabolisme sel dan tempat terlarutnya ribosom serta materi genetik.',
+        note: 'Catatan: Sitoplasma prokariotik tidak mengalami aliran sitoplasma (siklosis) seperti sel eukariotik.'
+      },
+      {
+        id: 'nukleoid',
+        num: '5',
+        name: 'Nukleoid',
+        desc: 'Wilayah di dalam sitoplasma tempat terkonsentrasinya kromosom bakteri berupa satu molekul DNA sirkuler untai ganda tanpa membran inti.',
+        func: 'Mengendalikan seluruh aktivitas genetik, metabolisme, dan pewarisan sifat utama saat pembelahan sel.',
+        note: 'Catatan: Karena tidak bermembran inti, proses transkripsi dan translasi dapat terjadi secara bersamaan.'
+      },
+      {
+        id: 'plasmid',
+        num: '6',
+        name: 'Plasmid',
+        desc: 'Molekul DNA sirkuler berukuran kecil di luar kromosom utama (ekstrakromosomal) yang mampu bereplikasi secara mandiri.',
+        func: 'Membawa gen-gen tambahan yang menguntungkan adaptasi, seperti gen resistensi terhadap antibiotik dan gen kemampuan konjugasi.',
+        note: 'Catatan: Tidak semua bakteri memiliki plasmid. Plasmid sering dimanfaatkan dalam bioteknologi rekayasa genetika.'
+      },
+      {
+        id: 'ribosom',
+        num: '7',
+        name: 'Ribosom',
+        desc: 'Organel kecil tak bermembran yang tersusun atas RNA ribosom (rRNA) dan protein dengan koefisien sedimentasi 70S (subunit 50S dan 30S).',
+        func: 'Tempat berlangsungnya sintesis protein (translasi) berdasarkan kode genetik dari mRNA.',
+        note: 'Catatan: Ribosom bakteri (70S) lebih kecil dibandingkan ribosom sel eukariotik (80S).'
+      },
+      {
+        id: 'flagela',
+        num: '8',
+        name: 'Flagela',
+        desc: 'Alat gerak berbentuk cambuk panjang yang tersusun atas protein flagelin dan berpangkal pada membran plasma serta dinding sel.',
+        func: 'Membantu sel bakteri bergerak (motilitas) menuju sumber nutrisi (kemotaksis positif) atau menjauhi zat beracun.',
+        note: 'Catatan: Tidak semua bakteri berflagela; bakteri tanpa flagela disebut atrik.'
+      },
+      {
+        id: 'pili',
+        num: '9',
+        name: 'Pili atau Fimbriae',
+        desc: 'Rambut-rambut halus dan pendek di permukaan sel yang tersusun atas protein pilin.',
+        func: 'Fimbriae berfungsi untuk melekatkan diri pada substrat atau jaringan inang, sedangkan pilus seks berfungsi sebagai jembatan transfer DNA saat konjugasi.',
+        note: 'Catatan: Pili berukuran lebih pendek, lebih kaku, dan lebih banyak jumlahnya dibandingkan flagela.'
+      }
+    ];
+
+    function renderOrganelleChips() {
+      const container = document.getElementById('organelleChipsContainer');
+      container.innerHTML = organelleData.map(item => {
+        const isDone = appState.exploredOrganelles.includes(item.id);
+        return `<button class="organelle-chip ${isDone ? 'explored' : ''}" id="chip-${item.id}" onclick="inspectOrganelle('${item.id}')">
+          ${isDone ? '&#10003;' : item.num + '.'} ${item.name.split(' ')[0]}
+        </button>`;
+      }).join('');
+      document.getElementById('cellExploredCount').textContent = appState.exploredOrganelles.length;
+    }
+
+    function inspectOrganelle(id) {
+      const item = organelleData.find(o => o.id === id);
+      if (!item) return;
+
+      document.querySelectorAll('.organelle-chip').forEach(c => c.classList.remove('active'));
+      const chip = document.getElementById('chip-' + id);
+      if (chip) chip.classList.add('active');
+
+      document.getElementById('orgStatusBadge').textContent = 'Struktur #' + item.num;
+      document.getElementById('orgTitle').textContent = item.num + '. ' + item.name;
+      document.getElementById('orgDesc').textContent = item.desc;
+      document.getElementById('orgFunc').textContent = item.func;
+      document.getElementById('orgExtraNote').textContent = item.note;
+
+      if (!appState.exploredOrganelles.includes(id)) {
+        appState.exploredOrganelles.push(id);
+        renderOrganelleChips();
+        const activeChip = document.getElementById('chip-' + id);
+        if (activeChip) activeChip.classList.add('active');
+      }
+
+      if (appState.exploredOrganelles.length === organelleData.length) {
+        document.getElementById('mod2CompleteBanner').classList.add('show');
+        appState.completedModules.mod2 = true;
+        saveState();
+      }
+    }
+
+    /* ========================================================================
+       5. MODUL 3: BENTUK DAN SUSUNAN BAKTERI + AKTIVITAS MENCOCOKKAN
+       ======================================================================== */
+    const bacteriaShapes = [
+      {
+        id: 'monokokus',
+        name: 'Monokokus',
+        category: 'Kokus (Bulat)',
+        desc: 'Sel bakteri berbentuk bulat tunggal (soliter) yang hidup terpisah satu sama lain.',
+        species: 'Micrococcus luteus, Monococcus gonorrhoeae',
+        svg: '<circle cx="50" cy="40" r="16" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>'
+      },
+      {
+        id: 'diplokokus',
+        name: 'Diplokokus',
+        category: 'Kokus (Bulat)',
+        desc: 'Dua sel bakteri berbentuk bulat yang saling berpasangan setelah membelah.',
+        species: 'Streptococcus pneumoniae (Diplococcus pneumoniae), Neisseria gonorrhoeae',
+        svg: '<circle cx="38" cy="40" r="14" fill="#0f766e" stroke="#ffffff" stroke-width="2"/><circle cx="62" cy="40" r="14" fill="#0d9488" stroke="#ffffff" stroke-width="2"/>'
+      },
+      {
+        id: 'streptokokus',
+        name: 'Streptokokus',
+        category: 'Kokus (Bulat)',
+        desc: 'Sel-sel bakteri berbentuk bulat yang tersusun memanjang menyerupai rantai atau kalung.',
+        species: 'Streptococcus pyogenes, Streptococcus thermophilus',
+        svg: '<circle cx="20" cy="40" r="10" fill="#0f766e"/><circle cx="38" cy="40" r="10" fill="#0d9488"/><circle cx="56" cy="40" r="10" fill="#0f766e"/><circle cx="74" cy="40" r="10" fill="#0d9488"/>'
+      },
+      {
+        id: 'stafilokokus',
+        name: 'Stafilokokus',
+        category: 'Kokus (Bulat)',
+        desc: 'Kumpulan sel bakteri bulat yang bergerombol tidak teratur menyerupai dompolan buah anggur.',
+        species: 'Staphylococcus aureus, Staphylococcus epidermidis',
+        svg: '<circle cx="42" cy="28" r="10" fill="#0f766e"/><circle cx="58" cy="28" r="10" fill="#0d9488"/><circle cx="34" cy="43" r="10" fill="#0d9488"/><circle cx="50" cy="43" r="10" fill="#14b8a6"/><circle cx="66" cy="43" r="10" fill="#0f766e"/><circle cx="42" cy="56" r="10" fill="#0f766e"/><circle cx="58" cy="56" r="10" fill="#0d9488"/>'
+      },
+      {
+        id: 'basil',
+        name: 'Monobasil (Basil)',
+        category: 'Basil (Batang)',
+        desc: 'Sel bakteri berbentuk batang silindris tunggal yang hidup menyendiri.',
+        species: 'Escherichia coli, Salmonella enterica, Lactobacillus casei',
+        svg: '<rect x="28" y="29" width="44" height="22" rx="11" fill="#0369a1" stroke="#ffffff" stroke-width="2"/>'
+      },
+      {
+        id: 'diplobasil',
+        name: 'Diplobasil',
+        category: 'Basil (Batang)',
+        desc: 'Dua sel bakteri berbentuk batang yang saling bergandengan ujung ke ujung.',
+        species: 'Moraxella lacunata, Klebsiella pneumoniae',
+        svg: '<rect x="14" y="30" width="34" height="20" rx="10" fill="#0369a1" stroke="#ffffff" stroke-width="2"/><rect x="50" y="30" width="34" height="20" rx="10" fill="#0284c7" stroke="#ffffff" stroke-width="2"/>'
+      },
+      {
+        id: 'streptobasil',
+        name: 'Streptobasil',
+        category: 'Basil (Batang)',
+        desc: 'Sel-sel bakteri berbentuk batang yang tersusun berderet memanjang seperti rantai.',
+        species: 'Bacillus anthracis, Azotobacter sp.',
+        svg: '<rect x="8" y="31" width="26" height="18" rx="9" fill="#0369a1"/><rect x="36" y="31" width="26" height="18" rx="9" fill="#0284c7"/><rect x="64" y="31" width="26" height="18" rx="9" fill="#0369a1"/>'
+      },
+      {
+        id: 'spirilum',
+        name: 'Spirilum',
+        category: 'Spiral',
+        desc: 'Bakteri berbentuk lengkung spiral kaku seperti pembuka tutup botol (lebih dari setengah lingkaran).',
+        species: 'Spirillum minor, Helicobacter pylori',
+        svg: '<path d="M18 45 C26 22, 38 62, 48 35 C58 15, 70 58, 82 35" stroke="#b45309" stroke-width="9" fill="none" stroke-linecap="round"/>'
+      },
+      {
+        id: 'vibrio',
+        name: 'Vibrio',
+        category: 'Spiral (Koma)',
+        desc: 'Bakteri berbentuk batang melengkung menyerupai tanda baca koma (kurang dari setengah lingkaran).',
+        species: 'Vibrio cholerae, Vibrio parahaemolyticus',
+        svg: '<path d="M32 26 C55 24, 65 44, 52 58" stroke="#d97706" stroke-width="12" fill="none" stroke-linecap="round"/>'
+      }
+    ];
+
+    function renderShapeGallery() {
+      const grid = document.getElementById('shapeGalleryGrid');
+      grid.innerHTML = bacteriaShapes.map((s, idx) => `
+        <div class="shape-card ${idx === 0 ? 'active' : ''}" id="shapecard-${s.id}" onclick="selectShape('${s.id}')">
+          <svg viewBox="0 0 100 80" width="100" height="72" style="margin:0 auto 6px; display:block; background:#f8fafc; border-radius:8px;">
+            ${s.svg}
+          </svg>
+          <div style="font-weight:700; font-size:0.9rem; color:var(--text-main);">${s.name}</div>
+          <div style="font-size:0.75rem; color:var(--text-muted);">${s.category}</div>
+        </div>
+      `).join('');
+    }
+
+    function selectShape(id) {
+      const item = bacteriaShapes.find(s => s.id === id);
+      if (!item) return;
+      document.querySelectorAll('.shape-card').forEach(c => c.classList.remove('active'));
+      document.getElementById('shapecard-' + id).classList.add('active');
+
+      document.getElementById('shapeDetailTitle').textContent = item.name;
+      document.getElementById('shapeDetailCategory').textContent = item.category;
+      document.getElementById('shapeDetailDesc').textContent = item.desc;
+      document.getElementById('shapeDetailSpecies').innerHTML = '<em>' + item.species + '</em>';
+    }
+
+    let currentShapeQuestions = [];
+    function initShapeMatching() {
+      const shuffled = [...bacteriaShapes].sort(() => Math.random() - 0.5).slice(0, 4);
+      currentShapeQuestions = shuffled;
+      const container = document.getElementById('shapeMatchContainer');
+      document.getElementById('shapeMatchFeedback').classList.remove('show');
+
+      const optionsHtml = bacteriaShapes.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+
+      container.innerHTML = shuffled.map((item, idx) => `
+        <div class="card-white" style="display:flex; align-items:center; gap:12px;">
+          <svg viewBox="0 0 100 80" width="88" height="70" style="background:#f1f5f9; border-radius:8px; flex-shrink:0;">
+            ${item.svg}
+          </svg>
+          <div style="flex:1;">
+            <label for="matchShapeSel-${idx}" style="font-size:0.84rem; font-weight:700; display:block; margin-bottom:4px;">Gambar #${idx + 1}:</label>
+            <select id="matchShapeSel-${idx}" class="input-field" style="width:100%; min-width:120px; padding:7px;">
+              <option value="">-- Pilih Nama --</option>
+              ${optionsHtml}
+            </select>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function checkShapeMatching() {
+      let correct = 0;
+      currentShapeQuestions.forEach((item, idx) => {
+        const sel = document.getElementById('matchShapeSel-' + idx);
+        if (sel && sel.value === item.id) {
+          correct++;
+          sel.style.borderColor = 'var(--success)';
+        } else if (sel) {
+          sel.style.borderColor = 'var(--danger)';
+        }
+      });
+
+      const fb = document.getElementById('shapeMatchFeedback');
+      if (correct === 4) {
+        fb.className = 'feedback-box feedback-success show';
+        fb.innerHTML = '<strong>Sempurna (4/4 Benar)!</strong> Kamu telah menguasai identifikasi bentuk dan susunan koloni bakteri.';
+        appState.completedModules.mod3 = true;
+        saveState();
+      } else {
+        fb.className = 'feedback-box feedback-error show';
+        fb.innerHTML = `<strong>Skor Pencocokan: ${correct}/4 Benar.</strong> Perhatikan kembali kotak berbingkai merah dan cocokkan jumlah serta susunan sel pada galeri di atas.`;
+      }
+    }
+
+    /* ========================================================================
+       6. MODUL 4: SIMULASI REPRODUKSI & TRANSFER MATERI GENETIK
+       ======================================================================== */
+    function switchMod4Tab(tab) {
+      document.getElementById('mod4PanelBiner').style.display = tab === 'biner' ? 'block' : 'none';
+      document.getElementById('mod4PanelTransfer').style.display = tab === 'transfer' ? 'block' : 'none';
+      document.getElementById('tabBtnBiner').classList.toggle('active', tab === 'biner');
+      document.getElementById('tabBtnTransfer').classList.toggle('active', tab === 'transfer');
+    }
+
+    const binerStages = [
+      {
+        title: 'Tahap 1: Sel Bakteri Induk Dewasa',
+        desc: 'Sel bakteri induk tumbuh mencapai ukuran optimal dengan satu kromosom sirkuler (DNA) yang melekat pada membran plasma.',
+        svg: `
+          <rect x="220" y="55" width="160" height="70" rx="35" fill="#10b981" stroke="#a7f3d0" stroke-width="3"/>
+          <ellipse cx="300" cy="90" rx="34" ry="18" fill="none" stroke="#fef08a" stroke-width="3.5"/>
+          <text x="300" y="152" fill="#94a3b8" font-size="12" text-anchor="middle">1 Kromosom DNA Sirkuler Induk</text>
+        `
+      },
+      {
+        title: 'Tahap 2: Replikasi (Penggandaan) DNA',
+        desc: 'DNA sirkuler menggandakan diri (replikasi) dimulai dari titik oriC sehingga terbentuk dua salinan kromosom identik.',
+        svg: `
+          <rect x="210" y="55" width="180" height="70" rx="35" fill="#10b981" stroke="#a7f3d0" stroke-width="3"/>
+          <ellipse cx="275" cy="90" rx="28" ry="16" fill="none" stroke="#fef08a" stroke-width="3.5"/>
+          <ellipse cx="325" cy="90" rx="28" ry="16" fill="none" stroke="#38bdf8" stroke-width="3.5"/>
+          <text x="300" y="152" fill="#94a3b8" font-size="12" text-anchor="middle">2 Salinan DNA Identik Terbentuk</text>
+        `
+      },
+      {
+        title: 'Tahap 3: Pemanjangan Sel & Segregasi DNA',
+        desc: 'Sel bakteri memanjang ke dua arah berlawanan dan masing-masing salinan DNA ditarik menuju kutub sel yang berbeda.',
+        svg: `
+          <rect x="165" y="55" width="270" height="70" rx="35" fill="#10b981" stroke="#a7f3d0" stroke-width="3"/>
+          <ellipse cx="235" cy="90" rx="30" ry="16" fill="none" stroke="#fef08a" stroke-width="3.5"/>
+          <ellipse cx="365" cy="90" rx="30" ry="16" fill="none" stroke="#38bdf8" stroke-width="3.5"/>
+          <path d="M270 90 L330 90" stroke="#ffffff" stroke-width="2" stroke-dasharray="4 4"/>
+          <text x="300" y="152" fill="#94a3b8" font-size="12" text-anchor="middle">Sel Memanjang &amp; DNA Bergerak ke Kutub Berlawanan</text>
+        `
+      },
+      {
+        title: 'Tahap 4: Pembentukan Septum (Sekat Pembelahan)',
+        desc: 'Membran plasma melekuk ke dalam di bagian tengah sel diikuti pembentukan dinding sel baru (septum) yang membagi sitoplasma.',
+        svg: `
+          <path d="M165 90 C165 55, 285 55, 300 78 C315 55, 435 55, 435 90 C435 125, 315 125, 300 102 C285 125, 165 125, 165 90 Z" fill="#10b981" stroke="#a7f3d0" stroke-width="3"/>
+          <line x1="300" y1="74" x2="300" y2="106" stroke="#fde047" stroke-width="4" stroke-dasharray="3 2"/>
+          <ellipse cx="230" cy="90" rx="28" ry="15" fill="none" stroke="#fef08a" stroke-width="3.5"/>
+          <ellipse cx="370" cy="90" rx="28" ry="15" fill="none" stroke="#38bdf8" stroke-width="3.5"/>
+          <text x="300" y="152" fill="#94a3b8" font-size="12" text-anchor="middle">Peletakan Dinding Sekat (Septum) di Tengah Sel</text>
+        `
+      },
+      {
+        title: 'Tahap 5: Pemisahan Menjadi Dua Sel Anak Identik',
+        desc: 'Septum terbentuk sempurna sehingga dihasilkan dua sel anak bakteri baru yang identik secara genetik dengan sel induknya.',
+        svg: `
+          <rect x="135" y="55" width="145" height="70" rx="35" fill="#10b981" stroke="#a7f3d0" stroke-width="3"/>
+          <ellipse cx="207" cy="90" rx="28" ry="16" fill="none" stroke="#fef08a" stroke-width="3.5"/>
+          <rect x="320" y="55" width="145" height="70" rx="35" fill="#10b981" stroke="#a7f3d0" stroke-width="3"/>
+          <ellipse cx="392" cy="90" rx="28" ry="16" fill="none" stroke="#38bdf8" stroke-width="3.5"/>
+          <text x="300" y="152" fill="#34d399" font-size="12" font-weight="bold" text-anchor="middle">Terbentuk 2 Sel Anak Bakteri Identik (2&sup1; = 2)</text>
+        `
+      }
+    ];
+
+    let binerStep = 0;
+    let binerTimer = null;
+
+    function renderBinerStage() {
+      const st = binerStages[binerStep];
+      document.getElementById('binerStageTitle').textContent = st.title;
+      document.getElementById('binerStepIndicator').textContent = `Langkah ${binerStep + 1} / 5`;
+      document.getElementById('binerSvgStage').innerHTML = st.svg;
+      document.getElementById('binerStageDesc').textContent = st.desc;
+    }
+
+    function startBinerAnim() {
+      if (binerTimer) return;
+      binerTimer = setInterval(() => {
+        binerStep = (binerStep + 1) % binerStages.length;
+        renderBinerStage();
+      }, 1700);
+    }
+
+    function pauseBinerAnim() {
+      if (binerTimer) {
+        clearInterval(binerTimer);
+        binerTimer = null;
+      }
+    }
+
+    function stepBinerAnim() {
+      pauseBinerAnim();
+      binerStep = (binerStep + 1) % binerStages.length;
+      renderBinerStage();
+    }
+
+    function resetBinerAnim() {
+      pauseBinerAnim();
+      binerStep = 0;
+      renderBinerStage();
+    }
+
+    function updatePopulationCalc() {
+      const n0 = parseInt(document.getElementById('sliderN0').value, 10);
+      const gen = parseInt(document.getElementById('sliderGen').value, 10);
+      const total = n0 * Math.pow(2, gen);
+
+      document.getElementById('valN0').textContent = n0;
+      document.getElementById('valGen').textContent = gen;
+      document.getElementById('valMinutes').textContent = gen * 20;
+
+      document.getElementById('populationFormulaDisplay').innerHTML =
+        `N = N&#8320; &times; 2<sup>n</sup> = ${n0} &times; 2<sup>${gen}</sup> = <span style="color:var(--primary-dark); font-size:1.2rem;">${total.toLocaleString('id-ID')} Sel Bakteri</span>`;
+
+      const visualCount = Math.min(total, 128);
+      let dots = '';
+      for (let i = 0; i < visualCount; i++) {
+        dots += `<span title="Sel Bakteri" style="display:inline-block; width:16px; height:9px; border-radius:99px; background:linear-gradient(90deg,#10b981,#059669); border:1px solid #064e3b;"></span>`;
+      }
+      if (total > 128) {
+        dots += `<span style="font-size:0.8rem; color:var(--text-muted); margin-left:6px;">... (+${(total - 128).toLocaleString('id-ID')} sel lainnya)</span>`;
+      }
+      document.getElementById('colonyVisualGrid').innerHTML = dots;
+    }
+
+    // Bagian B: Transfer Materi Genetik
+    let currentTransferMech = 'transformasi';
+    const transferData = {
+      transformasi: {
+        title: '1. Mekanisme Transformasi (Pengambilan DNA Bebas)',
+        steps: '<strong>Tahapan:</strong> (1) Sel bakteri donor mengalami lisis sehingga fragmen DNA bebas tersebar di lingkungan &rarr; (2) Sel bakteri resipien yang kompeten menyerap fragmen DNA bebas melalui protein membran &rarr; (3) DNA baru berintegrasi dengan kromosom resipien menghasilkan sel rekombinan.',
+        svg: `
+          <!-- DNA Bebas di Lingkungan -->
+          <path d="M120 75 Q140 60 160 75" stroke="#f43f5e" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M130 115 Q150 130 170 115" stroke="#f43f5e" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <text x="145" y="45" fill="#fda4af" font-size="11" text-anchor="middle">Fragmen DNA Bebas</text>
+          <!-- Panah Masuk -->
+          <path d="M180 95 L235 95" stroke="#fde047" stroke-width="3" marker-end="url(#arrow)"/>
+          <!-- Sel Resipien -->
+          <rect x="250" y="50" width="210" height="90" rx="45" fill="#0284c7" stroke="#bae6fd" stroke-width="3"/>
+          <ellipse cx="365" cy="95" rx="42" ry="20" fill="none" stroke="#fef08a" stroke-width="3.5"/>
+          <path d="M323 95 Q335 80 348 95" stroke="#f43f5e" stroke-width="4.5" fill="none"/>
+          <text x="355" y="162" fill="#bae6fd" font-size="11.5" text-anchor="middle">Bakteri Resipien Menyerap &amp; Menggabungkan DNA Bebas</text>
+        `
+      },
+      transduksi: {
+        title: '2. Mekanisme Transduksi (Perantara Virus Bakteriofag)',
+        steps: '<strong>Tahapan:</strong> (1) Bakteriofag menginfeksi bakteri donor dan secara tidak sengaja mengemas fragmen DNA bakteri donor ke dalam kapsid virus &rarr; (2) Bakteriofag menginfeksi bakteri resipien baru &rarr; (3) DNA bakteri donor disuntikkan dan bergabung dengan kromosom resipien.',
+        svg: `
+          <!-- Bakteriofag -->
+          <polygon points="160,30 180,42 180,66 160,78 140,66 140,42" fill="#a855f7" stroke="#f3e8ff" stroke-width="2"/>
+          <line x1="160" y1="50" x2="160" y2="105" stroke="#f43f5e" stroke-width="4"/>
+          <line x1="145" y1="88" x2="130" y2="105" stroke="#e9d5ff" stroke-width="2"/>
+          <line x1="175" y1="88" x2="190" y2="105" stroke="#e9d5ff" stroke-width="2"/>
+          <text x="160" y="20" fill="#e9d5ff" font-size="11" text-anchor="middle">Bakteriofag Pembawa DNA</text>
+          <!-- Sel Resipien -->
+          <rect x="220" y="55" width="230" height="90" rx="45" fill="#0f766e" stroke="#99f6e4" stroke-width="3"/>
+          <ellipse cx="345" cy="100" rx="45" ry="20" fill="none" stroke="#fef08a" stroke-width="3.5"/>
+          <path d="M235 85 L295 96" stroke="#f43f5e" stroke-width="3.5" stroke-dasharray="4 3"/>
+          <text x="335" y="168" fill="#99f6e4" font-size="11.5" text-anchor="middle">Virus Menyuntikkan DNA Donor ke Bakteri Resipien</text>
+        `
+      },
+      konjugasi: {
+        title: '3. Mekanisme Konjugasi (Kontak Langsung via Pilus Seks)',
+        steps: '<strong>Tahapan:</strong> (1) Bakteri donor (F+) membentuk jembatan sitoplasma menggunakan pilus seks yang menempel pada bakteri resipien (F-) &rarr; (2) Satu untai salinan plasmid F ditransfer melintasi jembatan &rarr; (3) Kedua sel menyintesis untai pelengkap sehingga keduanya menjadi sel F+.',
+        svg: `
+          <!-- Sel Donor F+ -->
+          <rect x="75" y="55" width="175" height="80" rx="40" fill="#0f766e" stroke="#99f6e4" stroke-width="3"/>
+          <ellipse cx="140" cy="95" rx="30" ry="16" fill="none" stroke="#fef08a" stroke-width="3"/>
+          <circle cx="205" cy="95" r="14" fill="none" stroke="#f43f5e" stroke-width="3.5"/>
+          <text x="162" y="42" fill="#99f6e4" font-size="11" text-anchor="middle">Bakteri Donor (F+)</text>
+
+          <!-- Jembatan Pilus Konjugasi -->
+          <rect x="250" y="88" width="95" height="14" fill="#fbbf24"/>
+          <line x1="255" y1="95" x2="340" y2="95" stroke="#dc2626" stroke-width="3" stroke-dasharray="5 3"/>
+          <text x="297" y="78" fill="#fde047" font-size="10.5" text-anchor="middle">Pilus Konjugasi</text>
+
+          <!-- Sel Resipien F- -->
+          <rect x="345" y="55" width="175" height="80" rx="40" fill="#0369a1" stroke="#bae6fd" stroke-width="3"/>
+          <ellipse cx="450" cy="95" rx="30" ry="16" fill="none" stroke="#fef08a" stroke-width="3"/>
+          <circle cx="385" cy="95" r="14" fill="none" stroke="#f43f5e" stroke-width="3.5" stroke-dasharray="4 2"/>
+          <text x="432" y="42" fill="#bae6fd" font-size="11" text-anchor="middle">Bakteri Resipien (F- &rarr; F+)</text>
+          <text x="300" y="165" fill="#e2e8f0" font-size="11.5" text-anchor="middle">Transfer Salinan Plasmid Melalui Jembatan Konjugasi</text>
+        `
+      }
+    };
+
+    function selectTransferMech(mech) {
+      currentTransferMech = mech;
+      document.getElementById('btnMechTransf').className = mech === 'transformasi' ? 'btn btn-secondary' : 'btn btn-outline';
+      document.getElementById('btnMechTransd').className = mech === 'transduksi' ? 'btn btn-secondary' : 'btn btn-outline';
+      document.getElementById('btnMechKonj').className = mech === 'konjugasi' ? 'btn btn-secondary' : 'btn btn-outline';
+
+      const d = transferData[mech];
+      document.getElementById('transferTitle').textContent = d.title;
+      document.getElementById('transferSvgStage').innerHTML = d.svg;
+      document.getElementById('transferStepsText').innerHTML = d.steps;
+    }
+
+    function replayTransferAnim() {
+      const svg = document.getElementById('transferSvgStage');
+      svg.style.opacity = '0.2';
+      setTimeout(() => { svg.style.opacity = '1'; }, 200);
+    }
+
+    function checkRefleksiMod4(isCorrect) {
+      const fb = document.getElementById('feedbackRefleksiMod4');
+      if (isCorrect) {
+        fb.className = 'feedback-box feedback-success show';
+        fb.innerHTML = '<strong>Benar Sekali!</strong> Konjugasi, transformasi, dan transduksi merupakan transfer materi genetik horizontal sehingga jumlah sel tetap (tidak bertambah), tetapi menghasilkan kombinasi sifat genetik baru.';
+        appState.completedModules.mod4 = true;
+        saveState();
+      } else {
+        fb.className = 'feedback-box feedback-error show';
+        fb.innerHTML = '<strong>Belum Tepat.</strong> Ingat perbedaan mendasar: pembelahan biner menambah jumlah individu, sedangkan konjugasi hanya memindahkan salinan plasmid antar dua sel yang sudah ada.';
+      }
+    }
+
+    /* ========================================================================
+       7. MODUL 5: PERMAINAN DRAG & DROP KLASIFIKASI (MOUSE + TOUCH)
+       ======================================================================== */
+    const classificationCards = [
+      { id: 'c1', label: 'Metanogen (Methanobacterium)', desc: 'Menghasilkan gas metana (CH4) di rawa-rawa & saluran pencernaan ruminansia.', group: 'archaea' },
+      { id: 'c2', label: 'Halofil Ekstrem (Halobacterium)', desc: 'Hidup pada lingkungan berkadar garam sangat tinggi seperti Laut Mati.', group: 'archaea' },
+      { id: 'c3', label: 'Termoasidofil (Sulfolobus)', desc: 'Bertahan di kawah vulkanik bersuhu >80°C dan kondisi sangat asam.', group: 'archaea' },
+      { id: 'c4', label: 'Dinding Sel Tanpa Peptidoglikan', desc: 'Membran plasma tersusun atas lipid berikatan eter yang tahan kondisi ekstrem.', group: 'archaea' },
+      { id: 'c5', label: 'Escherichia coli', desc: 'Bakteri batang Gram negatif di usus manusia yang membantu sintesis vitamin K.', group: 'eubacteria' },
+      { id: 'c6', label: 'Rhizobium leguminosarum', desc: 'Bersimbiosis pada bintil akar kacang-kacangan untuk mengikat nitrogen bebas.', group: 'eubacteria' },
+      { id: 'c7', label: 'Nostoc & Cyanobacteria', desc: 'Bakteri fotosintetik yang memiliki klorofil a dan menghasilkan oksigen.', group: 'eubacteria' },
+      { id: 'c8', label: 'Lactobacillus bulgaricus', desc: 'Bakteri sejati berdinding peptidoglikan yang berperan dalam fermentasi yoghurt.', group: 'eubacteria' }
+    ];
+
+    let cardPlacements = {};
+    let selectedTouchCardId = null;
+
+    function initDndGame() {
+      cardPlacements = {};
+      selectedTouchCardId = null;
+      document.getElementById('dndFeedbackBox').classList.remove('show');
+      document.getElementById('dndScoreBadge').textContent = '';
+
+      const shuffled = [...classificationCards].sort(() => Math.random() - 0.5);
+      shuffled.forEach(c => { cardPlacements[c.id] = 'pool'; });
+      renderDndBoard(false);
+    }
+
+    function renderDndBoard(showValidation) {
+      const poolEl = document.getElementById('dndCardPool');
+      const archEl = document.getElementById('zone-archaea');
+      const euEl = document.getElementById('zone-eubacteria');
+
+      poolEl.innerHTML = '';
+      archEl.innerHTML = '';
+      euEl.innerHTML = '';
+
+      classificationCards.forEach(c => {
+        const place = cardPlacements[c.id];
+        const cardDiv = document.createElement('div');
+        cardDiv.className = 'dnd-card';
+        if (selectedTouchCardId === c.id) cardDiv.classList.add('selected-touch');
+        if (showValidation && place !== 'pool') {
+          cardDiv.classList.add(place === c.group ? 'correct' : 'wrong');
+        }
+        cardDiv.draggable = true;
+        cardDiv.id = 'dnd-' + c.id;
+        cardDiv.innerHTML = `<strong>${c.label}</strong><div style="font-size:0.78rem; color:var(--text-muted); margin-top:2px;">${c.desc}</div>`;
+
+        // Drag events (Desktop Mouse)
+        cardDiv.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', c.id);
+        });
+
+        // Tap/Click event (Mobile Touch & Aksesibilitas)
+        cardDiv.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectedTouchCardId = (selectedTouchCardId === c.id) ? null : c.id;
+          renderDndBoard(false);
+        });
+
+        if (place === 'pool') poolEl.appendChild(cardDiv);
+        else if (place === 'archaea') archEl.appendChild(cardDiv);
+        else if (place === 'eubacteria') euEl.appendChild(cardDiv);
+      });
+    }
+
+    function allowDrop(e) {
+      e.preventDefault();
+      if (e.currentTarget.classList.contains('dropzone')) {
+        e.currentTarget.classList.add('drag-over');
+      }
+    }
+
+    function leaveDrop(e) {
+      e.currentTarget.classList.remove('drag-over');
+    }
+
+    function dropCard(e, targetZone) {
+      e.preventDefault();
+      e.currentTarget.classList.remove('drag-over');
+      const cardId = e.dataTransfer.getData('text/plain');
+      if (cardId && cardPlacements[cardId] !== undefined) {
+        cardPlacements[cardId] = targetZone;
+        selectedTouchCardId = null;
+        renderDndBoard(false);
+      }
+    }
+
+    function tapZone(targetZone) {
+      if (selectedTouchCardId) {
+        cardPlacements[selectedTouchCardId] = targetZone;
+        selectedTouchCardId = null;
+        renderDndBoard(false);
+      }
+    }
+
+    function verifyClassification() {
+      let placedCount = 0;
+      let correctCount = 0;
+
+      classificationCards.forEach(c => {
+        const place = cardPlacements[c.id];
+        if (place !== 'pool') placedCount++;
+        if (place === c.group) correctCount++;
+      });
+
+      const fb = document.getElementById('dndFeedbackBox');
+      if (placedCount < classificationCards.length) {
+        fb.className = 'feedback-box feedback-error show';
+        fb.innerHTML = `Masih ada <strong>${classificationCards.length - placedCount} kartu</strong> di kolam atas yang belum dikelompokkan. Pindahkan semua kartu terlebih dahulu!`;
+        return;
+      }
+
+      renderDndBoard(true);
+      const scorePct = Math.round((correctCount / classificationCards.length) * 100);
+      document.getElementById('dndScoreBadge').textContent = `Skor Klasifikasi: ${correctCount}/${classificationCards.length} (${scorePct}%)`;
+
+      if (correctCount === classificationCards.length) {
+        fb.className = 'feedback-box feedback-success show';
+        fb.innerHTML = '<strong>Hebat! Semua Kartu Terklasifikasi dengan Benar (100%)!</strong><br>Kamu berhasil membedakan kelompok ekstremofilik <em>Archaebacteria</em> (Metanogen, Halofil ekstrem, Termoasidofil) dengan bakteri sejati <em>Eubacteria</em> (<em>E. coli, Rhizobium, Nostoc, Lactobacillus</em>).';
+        appState.completedModules.mod5 = true;
+        saveState();
+      } else {
+        fb.className = 'feedback-box feedback-error show';
+        fb.innerHTML = `<strong>Hasil Verifikasi: ${correctCount} dari ${classificationCards.length} kartu benar.</strong> Kartu berbingkai merah masih keliru tempat. Ingat: bakteri penghuni rawa metana, kadar garam pekat, dan kawah panas tergolong <em>Archaebacteria</em>!`;
+      }
+    }
+
+    /* ========================================================================
+       8. MODUL PERANAN: EVALUASI STUDI KASUS
+       ======================================================================== */
+    function evaluateCaseStudy() {
+      const step1 = document.getElementById('caseStep1').value;
+      const step2 = document.getElementById('caseStep2').value.trim();
+      const fb = document.getElementById('caseStudyFeedback');
+
+      if (!step1 || step2.length < 15) {
+        fb.className = 'feedback-box feedback-error show';
+        fb.textContent = 'Lengkapi pemilihan identifikasi masalah dan tuliskan usulan solusi minimal satu kalimat lengkap.';
+        return;
+      }
+
+      if (step1 === 'correct') {
+        fb.className = 'feedback-box feedback-success show';
+        fb.innerHTML = `<strong>Analisis Studi Kasus Diterima!</strong><br>
+        <strong>Umpan Balik Edukatif:</strong> Solusi ilmiah yang direkomendasikan meliputi: (1) <em>Pencegahan patogen:</em> menutup makanan di kantin, mencuci tangan dengan sabun, dan merebus air minum hingga mendidih untuk mematikan <em>Vibrio cholerae</em> maupun <em>Salmonella</em>; (2) <em>Pemanfaatan bakteri menguntungkan:</em> menerapkan pupuk hayati (biofertilizer) berbasis bakteri penambat nitrogen seperti <em>Rhizobium</em> dan <em>Azotobacter</em> serta pembuatan kompos menggunakan bakteri pengurai.`;
+        appState.completedModules.modPeran = true;
+        saveState();
+      } else {
+        fb.className = 'feedback-box feedback-error show';
+        fb.innerHTML = '<strong>Identifikasi Kurang Tepat.</strong> Tidak semua bakteri berbahaya; sebagian besar bakteri justru bermanfaat bagi kesuburan tanah dan kesehatan pencernaan. Perbaiki pilihan nomor 1!';
+      }
+    }
+
+    /* ========================================================================
+       9. MODUL 6: KUIS INTERAKTIF (15 PG/BS/ANALISIS + 5 MENJODOHKAN = 20 SOAL)
+       ======================================================================== */
+    const quizQuestions = [
+      // 1-15: Pilihan Ganda, Benar/Salah, Identifikasi Gambar, Analisis
+      {
+        type: 'Pilihan Ganda',
+        q: 'Ciri utama yang membedakan Kingdom Monera dengan Kingdom Protista, Fungi, Plantae, dan Animalia adalah...',
+        options: [
+          'Bersifat multiseluler dan memiliki dinding sel selulosa',
+          'Bersifat prokariotik karena tidak memiliki membran inti sel (karioteka)',
+          'Memiliki mitokondria dan kloroplas untuk menghasilkan energi',
+          'Materi genetik tersimpan rapi di dalam nukleus bermembran rangkap'
+        ],
+        ans: 1,
+        explain: 'Kingdom Monera merupakan satu-satunya kingdom yang tersusun atas organisme prokariotik (tidak memiliki membran inti sel maupun organel bermembran).'
+      },
+      {
+        type: 'Pilihan Ganda',
+        q: 'Daerah di dalam sitoplasma bakteri tempat terkonsentrasinya DNA kromosomal sirkuler disebut...',
+        options: ['Nukleolus', 'Nukleoid', 'Plasmid', 'Mesosom'],
+        ans: 1,
+        explain: 'Nukleoid adalah wilayah di sitoplasma bakteri tempat berkumpulnya DNA utama tanpa dibungkus membran inti.'
+      },
+      {
+        type: 'Pilihan Ganda',
+        q: 'Struktur sel bakteri yang tersusun atas peptidoglikan dan berfungsi mempertahankan bentuk sel serta mencegah lisis osmotik adalah...',
+        options: ['Membran plasma', 'Kapsul', 'Dinding sel', 'Pilus'],
+        ans: 2,
+        explain: 'Dinding sel Eubacteria mengandung peptidoglikan yang kaku sehingga menjaga bentuk sel (kokus, basil, spiral) dan menahan tekanan osmotik.'
+      },
+      {
+        type: 'Pilihan Ganda',
+        q: 'Molekul DNA sirkuler kecil di luar kromosom utama bakteri yang sering membawa gen resistensi antibiotik adalah...',
+        options: ['Ribosom 70S', 'Plasmid', 'Flagelin', 'Fimbriae'],
+        ans: 1,
+        explain: 'Plasmid adalah DNA ekstrakromosomal sirkuler kecil yang dapat bereplikasi mandiri dan dipindahkan saat konjugasi.'
+      },
+      {
+        type: 'Benar atau Salah',
+        q: 'PERNYATAAN: Seluruh spesies bakteri di alam pasti memiliki kapsul, flagela, dan plasmid agar dapat bertahan hidup. Apakah pernyataan ini Benar atau Salah?',
+        options: [
+          'Benar, karena ketiganya merupakan organel pokok setiap sel prokariotik',
+          'Salah, karena kapsul, flagela, dan plasmid merupakan struktur tambahan yang hanya dimiliki spesies tertentu'
+        ],
+        ans: 1,
+        explain: 'Pernyataan tersebut SALAH. Struktur pokok semua bakteri adalah membran plasma, sitoplasma, ribosom, dan nukleoid; sedangkan kapsul, flagela, dan plasmid hanya dimiliki spesies tertentu.'
+      },
+      {
+        type: 'Identifikasi Gambar',
+        q: 'Perhatikan ilustrasi morfologi bakteri berikut. Susunan koloni bakteri bulat menyerupai dompolan anggur tersebut dinamakan...',
+        svg: '<svg viewBox="0 0 120 75" width="140" height="85" style="background:#f1f5f9; border-radius:8px; margin:8px 0;"><circle cx="50" cy="24" r="9" fill="#0f766e"/><circle cx="68" cy="24" r="9" fill="#0d9488"/><circle cx="42" cy="38" r="9" fill="#0d9488"/><circle cx="59" cy="38" r="9" fill="#14b8a6"/><circle cx="76" cy="38" r="9" fill="#0f766e"/><circle cx="50" cy="52" r="9" fill="#0f766e"/><circle cx="68" cy="52" r="9" fill="#0d9488"/></svg>',
+        options: ['Streptokokus', 'Stafilokokus', 'Diplokokus', 'Streptobasil'],
+        ans: 1,
+        explain: 'Stafilokokus (contoh: Staphylococcus aureus) adalah susunan bakteri bulat (kokus) yang bergerombol menyerupai buah anggur.'
+      },
+      {
+        type: 'Identifikasi Gambar',
+        q: 'Bakteri penyebab penyakit kolera (Vibrio cholerae) memiliki bentuk sel melengkung seperti tanda koma yang ditunjukkan oleh istilah...',
+        svg: '<svg viewBox="0 0 120 75" width="140" height="85" style="background:#f1f5f9; border-radius:8px; margin:8px 0;"><path d="M40 22 C65 20, 75 42, 60 56" stroke="#d97706" stroke-width="11" fill="none" stroke-linecap="round"/></svg>',
+        options: ['Spirilum', 'Vibrio', 'Monobasil', 'Spiroseta'],
+        ans: 1,
+        explain: 'Vibrio adalah bentuk batang melengkung menyerupai koma (kurang dari setengah lingkaran), contohnya Vibrio cholerae.'
+      },
+      {
+        type: 'Pilihan Ganda',
+        q: 'Kelompok Archaebacteria yang mampu bertahan hidup di kawah gunung berapi bersuhu tinggi dan lingkungan sangat asam (pH < 2) adalah...',
+        options: ['Metanogen', 'Halofil ekstrem', 'Termoasidofil', 'Cyanobacteria'],
+        ans: 2,
+        explain: 'Termoasidofil (termo = panas, asido = asam) hidup di mata air panas vulkanik bersulfur seperti Sulfolobus.'
+      },
+      {
+        type: 'Pilihan Ganda',
+        q: 'Alasan ilmiah utama dalam taksonomi modern yang memisahkan Domain Archaea dan Domain Bacteria adalah...',
+        options: [
+          'Archaea memiliki membran inti sedangkan Bacteria tidak',
+          'Dinding sel Archaea tidak mengandung peptidoglikan serta memiliki perbedaan urutan rRNA dan lipid membran',
+          'Archaea merupakan organisme multiseluler yang berfotosintesis',
+          'Bacteria hanya dapat hidup di kawah gunung berapi'
+        ],
+        ans: 1,
+        explain: 'Archaea tidak memiliki peptidoglikan pada dinding selnya, memiliki ikatan eter pada lipid membran, dan urutan rRNA yang khas.'
+      },
+      {
+        type: 'Analisis Sederhana',
+        q: 'Sebuah kultur awal berisi 3 sel bakteri Escherichia coli yang membelah secara biner setiap 20 menit. Berapakah jumlah sel bakteri setelah 1 jam 20 menit (80 menit)?',
+        options: ['12 sel bakteri', '24 sel bakteri', '48 sel bakteri', '96 sel bakteri'],
+        ans: 2,
+        explain: 'Dalam 80 menit terjadi n = 80 / 20 = 4 generasi. Menggunakan rumus N = N0 × 2^n = 3 × 2^4 = 3 × 16 = 48 sel bakteri.'
+      },
+      {
+        type: 'Pilihan Ganda',
+        q: 'Perpindahan fragmen DNA dari satu sel bakteri ke sel bakteri lain dengan perantaraan virus bakteriofag disebut...',
+        options: ['Transformasi', 'Transduksi', 'Konjugasi', 'Pembelahan biner'],
+        ans: 1,
+        explain: 'Transduksi adalah transfer materi genetik antar sel bakteri yang diperantarai oleh virus bakteriofag.'
+      },
+      {
+        type: 'Pilihan Ganda',
+        q: 'Pilus seks pada bakteri donor (F+) berperan sangat penting dalam proses...',
+        options: [
+          'Penyerapan DNA bebas dari lingkungan (transformasi)',
+          'Pembentukan jembatan sitoplasma untuk transfer plasmid (konjugasi)',
+          'Fotosintesis penghasil oksigen',
+          'Pembentukan endospora saat kekeringan'
+        ],
+        ans: 1,
+        explain: 'Pilus konjugasi (pilus seks) menghubungkan bakteri donor (F+) dan resipien (F-) agar plasmid dapat ditransfer.'
+      },
+      {
+        type: 'Benar atau Salah',
+        q: 'PERNYATAAN: Transformasi, transduksi, dan konjugasi merupakan cara reproduksi seksual bakteri yang secara langsung melipatgandakan jumlah sel bakteri. Apakah pernyataan ini Benar atau Salah?',
+        options: [
+          'Benar, karena menghasilkan empat sel anak baru sekaligus',
+          'Salah, karena ketiganya adalah mekanisme transfer gen horizontal yang meningkatkan variasi genetik tanpa langsung menambah jumlah individu'
+        ],
+        ans: 1,
+        explain: 'SALAH. Ketiga proses tersebut adalah transfer gen horizontal (rekombinasi genetik), bukan reproduksi yang menambah jumlah sel.'
+      },
+      {
+        type: 'Pilihan Ganda',
+        q: 'Bakteri yang bersimbiosis pada bintil akar tanaman kacang-kacangan (Leguminosae) dan berperan mengikat nitrogen bebas (N2) dari udara adalah...',
+        options: ['Lactobacillus bulgaricus', 'Rhizobium leguminosarum', 'Mycobacterium tuberculosis', 'Salmonella enterica'],
+        ans: 1,
+        explain: 'Rhizobium leguminosarum bersimbiosis mutualisme dengan akar tanaman polong-polongan untuk fiksasi nitrogen.'
+      },
+      {
+        type: 'Analisis Sederhana',
+        q: 'Seorang pasien mengalami batuk berdahak kronis selama lebih dari 3 minggu disertai penurunan berat badan. Pemeriksaan laboratorium menunjukkan infeksi bakteri berbentuk batang tahan asam. Spesies bakteri penyebab penyakit tersebut adalah...',
+        options: ['Vibrio cholerae', 'Mycobacterium tuberculosis', 'Escherichia coli', 'Nostoc commune'],
+        ans: 1,
+        explain: 'Mycobacterium tuberculosis adalah bakteri berbentuk batang penyebab penyakit tuberkulosis (TBC) pada paru-paru.'
+      },
+
+      // 16-20: 5 Soal Menjodohkan
+      {
+        type: 'Menjodohkan',
+        q: 'Jodohkan kelompok/spesies Monera di sebelah kiri dengan ciri atau peranannya yang tepat di sebelah kanan!',
+        left: '16. Metanogen (Archaebacteria)',
+        choices: [
+          'Menghasilkan gas metana (CH4) di lingkungan anaerob seperti rawa',
+          'Membantu sintesis vitamin K di usus besar manusia',
+          'Berperan dalam fermentasi susu menjadi yoghurt',
+          'Organisme fotoautotrof yang memiliki klorofil a',
+          'Bakteri penyebab penyakit kolera dengan bentuk koma'
+        ],
+        ans: 0,
+        explain: 'Metanogen adalah kelompok Archaebacteria anaerob yang mereduksi CO2 menjadi gas metana (CH4).'
+      },
+      {
+        type: 'Menjodohkan',
+        q: 'Jodohkan kelompok/spesies Monera di sebelah kiri dengan ciri atau peranannya yang tepat di sebelah kanan!',
+        left: '17. Escherichia coli (non-patogen)',
+        choices: [
+          'Menghasilkan gas metana (CH4) di lingkungan anaerob seperti rawa',
+          'Membantu sintesis vitamin K di usus besar manusia',
+          'Berperan dalam fermentasi susu menjadi yoghurt',
+          'Organisme fotoautotrof yang memiliki klorofil a',
+          'Bakteri penyebab penyakit kolera dengan bentuk koma'
+        ],
+        ans: 1,
+        explain: 'Escherichia coli yang hidup di usus besar manusia membantu pembusukan sisa pencernaan dan memproduksi vitamin K.'
+      },
+      {
+        type: 'Menjodohkan',
+        q: 'Jodohkan kelompok/spesies Monera di sebelah kiri dengan ciri atau peranannya yang tepat di sebelah kanan!',
+        left: '18. Lactobacillus bulgaricus',
+        choices: [
+          'Menghasilkan gas metana (CH4) di lingkungan anaerob seperti rawa',
+          'Membantu sintesis vitamin K di usus besar manusia',
+          'Berperan dalam fermentasi susu menjadi yoghurt',
+          'Organisme fotoautotrof yang memiliki klorofil a',
+          'Bakteri penyebab penyakit kolera dengan bentuk koma'
+        ],
+        ans: 2,
+        explain: 'Lactobacillus bulgaricus mengubah laktosa susu menjadi asam laktat dalam pembuatan yoghurt.'
+      },
+      {
+        type: 'Menjodohkan',
+        q: 'Jodohkan kelompok/spesies Monera di sebelah kiri dengan ciri atau peranannya yang tepat di sebelah kanan!',
+        left: '19. Cyanobacteria (Nostoc / Anabaena)',
+        choices: [
+          'Menghasilkan gas metana (CH4) di lingkungan anaerob seperti rawa',
+          'Membantu sintesis vitamin K di usus besar manusia',
+          'Berperan dalam fermentasi susu menjadi yoghurt',
+          'Organisme fotoautotrof yang memiliki klorofil a',
+          'Bakteri penyebab penyakit kolera dengan bentuk koma'
+        ],
+        ans: 3,
+        explain: 'Cyanobacteria adalah kelompok Eubacteria fotosintetik yang memiliki klorofil a dan menghasilkan oksigen.'
+      },
+      {
+        type: 'Menjodohkan',
+        q: 'Jodohkan kelompok/spesies Monera di sebelah kiri dengan ciri atau peranannya yang tepat di sebelah kanan!',
+        left: '20. Vibrio cholerae',
+        choices: [
+          'Menghasilkan gas metana (CH4) di lingkungan anaerob seperti rawa',
+          'Membantu sintesis vitamin K di usus besar manusia',
+          'Berperan dalam fermentasi susu menjadi yoghurt',
+          'Organisme fotoautotrof yang memiliki klorofil a',
+          'Bakteri penyebab penyakit kolera dengan bentuk koma'
+        ],
+        ans: 4,
+        explain: 'Vibrio cholerae adalah bakteri patogen berbentuk koma penyebab penyakit kolera.'
+      }
+    ];
+
+    let currentQuizIdx = 0;
+    let userQuizAnswers = new Array(quizQuestions.length).fill(null);
+
+    function renderQuizQuestion() {
+      const qObj = quizQuestions[currentQuizIdx];
+      document.getElementById('quizQuestionCounter').textContent = `Soal ${currentQuizIdx + 1} dari ${quizQuestions.length}`;
+      document.getElementById('quizQuestionTypeBadge').textContent = qObj.type;
+      document.getElementById('quizWarningBox').classList.remove('show');
+
+      const body = document.getElementById('quizQuestionBody');
+      if (qObj.type !== 'Menjodohkan') {
+        const optsHtml = qObj.options.map((opt, i) => {
+          const isSel = userQuizAnswers[currentQuizIdx] === i;
+          const letter = String.fromCharCode(65 + i);
+          return `<button class="quiz-option ${isSel ? 'selected' : ''}" onclick="selectQuizAnswer(${i})">
+            <strong>${letter}.</strong> ${opt}
+          </button>`;
+        }).join('');
+
+        body.innerHTML = `
+          <p style="font-size:1.02rem; font-weight:600; margin-bottom:12px;">${qObj.q}</p>
+          ${qObj.svg ? qObj.svg : ''}
+          <div style="margin-top:8px;">${optsHtml}</div>
+        `;
+      } else {
+        const choicesHtml = qObj.choices.map((ch, i) =>
+          `<option value="${i}" ${userQuizAnswers[currentQuizIdx] === i ? 'selected' : ''}>${ch}</option>`
+        ).join('');
+
+        body.innerHTML = `
+          <p style="font-size:1rem; font-weight:600; margin-bottom:12px;">${qObj.q}</p>
+          <div class="match-row">
+            <div style="font-weight:700; color:var(--primary-dark);">${qObj.left}</div>
+            <div>
+              <select class="input-field" style="width:100%;" onchange="selectQuizAnswer(parseInt(this.value, 10))">
+                <option value="">-- Pilih Pasangan yang Tepat --</option>
+                ${choicesHtml}
+              </select>
+            </div>
+          </div>
+        `;
+      }
+
+      // Update tombol navigasi
+      document.getElementById('btnQuizPrev').disabled = currentQuizIdx === 0;
+      const isLast = currentQuizIdx === quizQuestions.length - 1;
+      document.getElementById('btnQuizNext').style.display = isLast ? 'none' : 'inline-flex';
+      document.getElementById('btnQuizSubmit').style.display = isLast ? 'inline-flex' : 'none';
+
+      renderQuizNumberDots();
+    }
+
+    function selectQuizAnswer(val) {
+      userQuizAnswers[currentQuizIdx] = isNaN(val) ? null : val;
+      renderQuizQuestion();
+    }
+
+    function renderQuizNumberDots() {
+      const container = document.getElementById('quizNumberDots');
+      container.innerHTML = quizQuestions.map((_, idx) => {
+        const answered = userQuizAnswers[idx] !== null;
+        const active = idx === currentQuizIdx;
+        let bg = '#f1f5f9';
+        let color = '#0f172a';
+        let border = '1px solid #cbd5e1';
+        if (answered) { bg = '#dcfce7'; color = '#14532d'; border = '1px solid #4ade80'; }
+        if (active) { bg = '#0369a1'; color = '#ffffff'; border = '1px solid #075985'; }
+
+        return `<button onclick="jumpQuizQuestion(${idx})" style="width:30px; height:30px; border-radius:6px; background:${bg}; color:${color}; border:${border}; font-size:0.8rem; font-weight:700; cursor:pointer;">${idx + 1}</button>`;
+      }).join('');
+    }
+
+    function jumpQuizQuestion(idx) {
+      currentQuizIdx = idx;
+      renderQuizQuestion();
+    }
+
+    function prevQuizQuestion() {
+      if (currentQuizIdx > 0) {
+        currentQuizIdx--;
+        renderQuizQuestion();
+      }
+    }
+
+    function nextQuizQuestion() {
+      if (currentQuizIdx < quizQuestions.length - 1) {
+        currentQuizIdx++;
+        renderQuizQuestion();
+      }
+    }
+
+    function submitFinalQuiz() {
+      const unanswered = userQuizAnswers.filter(a => a === null).length;
+      const warn = document.getElementById('quizWarningBox');
+      if (unanswered > 0) {
+        warn.classList.add('show');
+        warn.innerHTML = `Masih terdapat <strong>${unanswered} soal</strong> yang belum dijawab. Klik nomor soal berwarna abu-abu di atas untuk melengkapinya sebelum mengakhiri kuis!`;
+        return;
+      }
+
+      let score = 0;
+      quizQuestions.forEach((q, idx) => {
+        if (userQuizAnswers[idx] === q.ans) score++;
+      });
+
+      const pct = Math.round((score / quizQuestions.length) * 100);
+      let category = '';
+      if (pct >= 86) category = 'Sangat Baik (Istimewa - Menguasai Konsep Monera)';
+      else if (pct >= 75) category = 'Baik (Tuntas Kriteria Ketercapaian Tujuan Pembelajaran)';
+      else if (pct >= 60) category = 'Cukup (Perlu Penguatan pada Beberapa Sub-Materi)';
+      else category = 'Perlu Bimbingan (Silakan Eksplorasi Ulang Modul 1-6)';
+
+      document.getElementById('quizActiveContainer').style.display = 'none';
+      document.getElementById('quizResultContainer').style.display = 'block';
+
+      const sName = appState.studentName || 'Peserta Didik Kelas X';
+      document.getElementById('resultStudentLabel').textContent = sName + ' &bull; SMAN 2 Tanjung Raja';
+      document.getElementById('resultScoreBig').textContent = `${score} / ${quizQuestions.length} (${pct}%)`;
+      document.getElementById('resultCategoryBadge').textContent = 'Kategori: ' + category;
+
+      // Render Pembahasan Lengkap
+      const reviewList = document.getElementById('quizReviewList');
+      reviewList.innerHTML = quizQuestions.map((q, idx) => {
+        const uAns = userQuizAnswers[idx];
+        const isCorrect = uAns === q.ans;
+        const optList = q.type === 'Menjodohkan' ? q.choices : q.options;
+        const userText = optList[uAns];
+        const correctText = optList[q.ans];
+
+        return `
+          <div style="padding:12px; border-radius:8px; margin-bottom:10px; border:1px solid ${isCorrect ? '#86efac' : '#fca5a5'}; background:${isCorrect ? '#f0fdf4' : '#fef2f2'};">
+            <div style="font-weight:700; font-size:0.92rem; margin-bottom:4px;">
+              Soal ${idx + 1} (${q.type}): ${isCorrect ? '<span style="color:var(--success);">&#10003; Benar</span>' : '<span style="color:var(--danger);">&#10007; Kurang Tepat</span>'}
+            </div>
+            <p style="font-size:0.88rem; margin-bottom:6px;">${q.type === 'Menjodohkan' ? q.left : q.q}</p>
+            <div style="font-size:0.85rem;">
+              <div><strong>Jawaban Kamu:</strong> ${userText}</div>
+              ${!isCorrect ? `<div style="color:var(--success);"><strong>Kunci Jawaban:</strong> ${correctText}</div>` : ''}
+              <div style="margin-top:4px; color:var(--text-muted);"><strong>Pembahasan:</strong> ${q.explain}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      appState.quizScore = pct;
+      appState.completedModules.mod6 = true;
+      saveState();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function restartQuiz() {
+      currentQuizIdx = 0;
+      userQuizAnswers = new Array(quizQuestions.length).fill(null);
+      document.getElementById('quizResultContainer').style.display = 'none';
+      document.getElementById('quizActiveContainer').style.display = 'block';
+      renderQuizQuestion();
+    }
+
+    /* ========================================================================
+       10. GLOSARIUM ISTILAH BIOLOGI
+       ======================================================================== */
+    const glossaryTerms = [
+      { term: 'Archaebacteria', def: 'Kelompok mikroorganisme prokariotik purba yang dinding selnya tidak mengandung peptidoglikan dan mampu hidup di habitat ekstrem.' },
+      { term: 'Bakteriofag', def: 'Virus yang secara spesifik menginfeksi dan bereplikasi di dalam sel bakteri; berperan sebagai vektor pada proses transduksi.' },
+      { term: 'Endospora', def: 'Struktur dorman berdinding tebal yang dibentuk oleh beberapa bakteri (seperti Bacillus dan Clostridium) untuk bertahan pada kondisi lingkungan tidak menguntungkan.' },
+      { term: 'Eubacteria', def: 'Kelompok bakteri sejati yang memiliki dinding sel tersusun atas peptidoglikan dan hidup secara kosmopolit.' },
+      { term: 'Fiksasi Nitrogen', def: 'Proses pengikatan gas nitrogen bebas (N2) dari atmosfer menjadi amonia atau senyawa nitrogen yang dapat diserap tumbuhan.' },
+      { term: 'Kapsul', def: 'Lapisan polisakarida kental di bagian terluar sel bakteri tertentu yang melindungi dari kekeringan dan sistem imun inang.' },
+      { term: 'Konjugasi', def: 'Transfer materi genetik (plasmid) secara langsung antara dua sel bakteri melalui jembatan sitoplasma yang dibentuk pilus seks.' },
+      { term: 'Nukleoid', def: 'Daerah tidak bermembran di dalam sitoplasma prokariotik tempat terkonsentrasinya kromosom DNA sirkuler.' },
+      { term: 'Pembelahan Biner', def: 'Reproduksi aseksual pada prokariota di mana satu sel induk membelah langsung menjadi dua sel anak yang identik secara genetik.' },
+      { term: 'Peptidoglikan', def: 'Polimer gabungan gula dan asam amino yang membentuk struktur jaring kaku pada dinding sel Eubacteria.' },
+      { term: 'Plasmid', def: 'Molekul DNA sirkuler kecil ekstrakromosomal di dalam sel bakteri yang mampu bereplikasi secara mandiri.' },
+      { term: 'Prokariotik', def: 'Tipe sel yang tidak memiliki membran pembungkus inti sel (karioteka) maupun organel bermembran rangkap.' },
+      { term: 'Transduksi', def: 'Perpindahan fragmen DNA bakteri dari satu sel ke sel lainnya dengan perantaraan virus bakteriofag.' },
+      { term: 'Transformasi', def: 'Pengambilan fragmen DNA telanjang (bebas) dari lingkungan sekitar oleh sel bakteri kompeten.' }
+    ];
+
+    function renderGlossary() {
+      const box = document.getElementById('glossaryContent');
+      box.innerHTML = glossaryTerms.map(g =>
+        `<div class="glossary-item"><strong>${g.term}:</strong> ${g.def}</div>`
+      ).join('');
+    }
+
+    /* ========================================================================
+       11. INISIALISASI SAAT HALAMAN DIMUAT
+       ======================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      loadState();
+      renderOrganelleChips();
+      renderShapeGallery();
+      initShapeMatching();
+      renderBinerStage();
+      updatePopulationCalc();
+      selectTransferMech('transformasi');
+      initDndGame();
+      renderQuizQuestion();
+      renderGlossary();
+    });
+  </script>
+</body>
+</html>
